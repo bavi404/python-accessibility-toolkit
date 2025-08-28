@@ -56,17 +56,19 @@ class LandmarkCheck(BaseCheck):
         """Check for main landmark issues."""
         issues = []
         
-        # Check for main element
+        # Check for main element or role="main"
         main_elements = soup.find_all("main")
-        if not main_elements:
+        main_roles = soup.find_all(attrs={"role": "main"})
+
+        has_main_element = len(main_elements) > 0
+        has_main_role = len(main_roles) > 0
+
+        # Only one missing-main issue should be emitted if neither exists
+        if not (has_main_element or has_main_role):
             issues.append(self._create_missing_main_landmark_issue(soup))
         elif len(main_elements) > 1:
+            # If there are multiple <main> elements, report it once
             issues.append(self._create_multiple_main_landmarks_issue(len(main_elements)))
-        
-        # Check for main role
-        main_roles = soup.find_all(attrs={"role": "main"})
-        if not main_elements and not main_roles:
-            issues.append(self._create_missing_main_landmark_issue(soup))
         
         return issues
     
