@@ -1,0 +1,1519 @@
+{
+  "generated_at": "2025-08-28T11:53:09.600349",
+  "summary": {
+    "total_urls_scanned": 3,
+    "successful_scans": 3,
+    "failed_scans": 0,
+    "total_issues": 70,
+    "critical_issues": 18,
+    "moderate_issues": 52,
+    "low_issues": 0,
+    "average_accessibility_score": 23.2,
+    "scan_duration": 5.896349191665649,
+    "timestamp": "2025-08-28T11:53:09.600393"
+  },
+  "scan_results": [
+    {
+      "url": "https://httpbin.org/html",
+      "timestamp": "2025-08-28T11:53:08.009505",
+      "issues": [
+        {
+          "issue_type": "missing_landmarks",
+          "severity": "critical",
+          "description": "Page missing main landmark",
+          "element": "<body>",
+          "context": "Entire page",
+          "line_number": null,
+          "column_number": null,
+          "suggested_fix": "Add a <main> element or role='main' attribute to identify the main content area of the page. This helps screen readers navigate to the primary content.",
+          "wcag_criteria": [
+            "1.3.1",
+            "2.4.1"
+          ],
+          "additional_info": {
+            "page_title": "No title"
+          }
+        },
+        {
+          "issue_type": "missing_landmarks",
+          "severity": "critical",
+          "description": "Page missing main landmark",
+          "element": "<body>",
+          "context": "Entire page",
+          "line_number": null,
+          "column_number": null,
+          "suggested_fix": "Add a <main> element or role='main' attribute to identify the main content area of the page. This helps screen readers navigate to the primary content.",
+          "wcag_criteria": [
+            "1.3.1",
+            "2.4.1"
+          ],
+          "additional_info": {
+            "page_title": "No title"
+          }
+        },
+        {
+          "issue_type": "missing_skip_links",
+          "severity": "moderate",
+          "description": "Page missing skip links",
+          "element": "<body>",
+          "context": "Entire page",
+          "line_number": null,
+          "column_number": null,
+          "suggested_fix": "Add skip links at the beginning of the page to allow keyboard users to jump directly to main content, navigation, or other important sections. Example: <a href='#main'>Skip to main content</a>",
+          "wcag_criteria": [
+            "2.4.1"
+          ],
+          "additional_info": {
+            "page_title": "No title"
+          }
+        },
+        {
+          "issue_type": "missing_skip_links",
+          "severity": "moderate",
+          "description": "Page missing skip links for keyboard navigation",
+          "element": "<body>",
+          "context": "Entire page",
+          "line_number": null,
+          "column_number": null,
+          "suggested_fix": "Add skip links at the beginning of the page to allow keyboard users to jump directly to main content, navigation, or other important sections. Example: <a href='#main'>Skip to main content</a>",
+          "wcag_criteria": [
+            "2.4.1"
+          ],
+          "additional_info": {
+            "page_title": "No title"
+          }
+        }
+      ],
+      "page_title": "",
+      "page_description": "",
+      "scan_duration": 1.4677190780639648,
+      "status": "completed",
+      "error_message": null,
+      "metadata": {},
+      "summary": {
+        "total_issues": 4,
+        "critical_issues": 2,
+        "moderate_issues": 2,
+        "low_issues": 0,
+        "accessibility_score": 16.7
+      }
+    },
+    {
+      "url": "https://httpbin.org/forms/post",
+      "timestamp": "2025-08-28T11:53:07.943454",
+      "issues": [
+        {
+          "issue_type": "improper_heading_hierarchy",
+          "severity": "moderate",
+          "description": "Page has no heading elements",
+          "element": "<body>",
+          "context": "Entire page",
+          "line_number": null,
+          "column_number": null,
+          "suggested_fix": "Add heading elements (h1, h2, h3, etc.) to structure your content. Start with an h1 that describes the main topic of the page, then use h2, h3, etc. for subsections.",
+          "wcag_criteria": [
+            "1.3.1",
+            "2.4.6"
+          ],
+          "additional_info": {
+            "page_title": "No title"
+          }
+        },
+        {
+          "issue_type": "inaccessible_forms",
+          "severity": "moderate",
+          "description": "Form missing submit button",
+          "element": "<form>",
+          "context": "<html> > <body>",
+          "line_number": 7,
+          "column_number": 2,
+          "suggested_fix": "Add a submit button (<input type='submit'> or <button type='submit'>) to allow users to submit the form.",
+          "wcag_criteria": [
+            "2.1.1",
+            "3.2.2"
+          ],
+          "additional_info": {
+            "tag": "form",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "method": "post",
+              "action": "/post"
+            },
+            "text": "Customer name:Telephone:E-mail address:Pizza SizeSmallMediumLargePizza ToppingsBaconExtra CheeseOnio..."
+          }
+        },
+        {
+          "issue_type": "missing_landmarks",
+          "severity": "critical",
+          "description": "Page missing main landmark",
+          "element": "<body>",
+          "context": "Entire page",
+          "line_number": null,
+          "column_number": null,
+          "suggested_fix": "Add a <main> element or role='main' attribute to identify the main content area of the page. This helps screen readers navigate to the primary content.",
+          "wcag_criteria": [
+            "1.3.1",
+            "2.4.1"
+          ],
+          "additional_info": {
+            "page_title": "No title"
+          }
+        },
+        {
+          "issue_type": "missing_landmarks",
+          "severity": "critical",
+          "description": "Page missing main landmark",
+          "element": "<body>",
+          "context": "Entire page",
+          "line_number": null,
+          "column_number": null,
+          "suggested_fix": "Add a <main> element or role='main' attribute to identify the main content area of the page. This helps screen readers navigate to the primary content.",
+          "wcag_criteria": [
+            "1.3.1",
+            "2.4.1"
+          ],
+          "additional_info": {
+            "page_title": "No title"
+          }
+        },
+        {
+          "issue_type": "missing_skip_links",
+          "severity": "moderate",
+          "description": "Page missing skip links",
+          "element": "<body>",
+          "context": "Entire page",
+          "line_number": null,
+          "column_number": null,
+          "suggested_fix": "Add skip links at the beginning of the page to allow keyboard users to jump directly to main content, navigation, or other important sections. Example: <a href='#main'>Skip to main content</a>",
+          "wcag_criteria": [
+            "2.4.1"
+          ],
+          "additional_info": {
+            "page_title": "No title"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: button",
+          "element": "<button>",
+          "context": "<form> > <p>",
+          "line_number": 26,
+          "column_number": 6,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "button",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Submit order"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: input",
+          "element": "<input>",
+          "context": "<p> > <label>",
+          "line_number": 8,
+          "column_number": 28,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "input",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "name": "custname"
+            }
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: input",
+          "element": "<input>",
+          "context": "<p> > <label>",
+          "line_number": 9,
+          "column_number": 24,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "input",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "type": "tel",
+              "name": "custtel"
+            }
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: input",
+          "element": "<input>",
+          "context": "<p> > <label>",
+          "line_number": 10,
+          "column_number": 29,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "input",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "type": "email",
+              "name": "custemail"
+            }
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: input",
+          "element": "<input>",
+          "context": "<p> > <label>",
+          "line_number": 13,
+          "column_number": 15,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "input",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "type": "radio",
+              "name": "size",
+              "value": "small"
+            }
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: input",
+          "element": "<input>",
+          "context": "<p> > <label>",
+          "line_number": 14,
+          "column_number": 15,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "input",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "type": "radio",
+              "name": "size",
+              "value": "medium"
+            }
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: input",
+          "element": "<input>",
+          "context": "<p> > <label>",
+          "line_number": 15,
+          "column_number": 15,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "input",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "type": "radio",
+              "name": "size",
+              "value": "large"
+            }
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: input",
+          "element": "<input>",
+          "context": "<p> > <label>",
+          "line_number": 19,
+          "column_number": 15,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "input",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "type": "checkbox",
+              "name": "topping",
+              "value": "bacon"
+            }
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: input",
+          "element": "<input>",
+          "context": "<p> > <label>",
+          "line_number": 20,
+          "column_number": 15,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "input",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "type": "checkbox",
+              "name": "topping",
+              "value": "cheese"
+            }
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: input",
+          "element": "<input>",
+          "context": "<p> > <label>",
+          "line_number": 21,
+          "column_number": 15,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "input",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "type": "checkbox",
+              "name": "topping",
+              "value": "onion"
+            }
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: input",
+          "element": "<input>",
+          "context": "<p> > <label>",
+          "line_number": 22,
+          "column_number": 15,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "input",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "type": "checkbox",
+              "name": "topping",
+              "value": "mushroom"
+            }
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: input",
+          "element": "<input>",
+          "context": "<p> > <label>",
+          "line_number": 24,
+          "column_number": 38,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "input",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "type": "time",
+              "min": "11:00",
+              "max": "21:00",
+              "step": "900",
+              "name": "delivery"
+            }
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: textarea",
+          "element": "<textarea>",
+          "context": "<p> > <label>",
+          "line_number": 25,
+          "column_number": 36,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "textarea",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "name": "comments"
+            }
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "critical",
+          "description": "Interactive element is not keyboard focusable: label",
+          "element": "<label>",
+          "context": "<form> > <p>",
+          "line_number": 8,
+          "column_number": 6,
+          "suggested_fix": "Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.",
+          "wcag_criteria": [
+            "2.1.1",
+            "2.4.3"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Customer name:"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: label",
+          "element": "<label>",
+          "context": "<form> > <p>",
+          "line_number": 8,
+          "column_number": 6,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Customer name:"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "critical",
+          "description": "Interactive element is not keyboard focusable: label",
+          "element": "<label>",
+          "context": "<form> > <p>",
+          "line_number": 9,
+          "column_number": 6,
+          "suggested_fix": "Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.",
+          "wcag_criteria": [
+            "2.1.1",
+            "2.4.3"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Telephone:"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: label",
+          "element": "<label>",
+          "context": "<form> > <p>",
+          "line_number": 9,
+          "column_number": 6,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Telephone:"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "critical",
+          "description": "Interactive element is not keyboard focusable: label",
+          "element": "<label>",
+          "context": "<form> > <p>",
+          "line_number": 10,
+          "column_number": 6,
+          "suggested_fix": "Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.",
+          "wcag_criteria": [
+            "2.1.1",
+            "2.4.3"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "E-mail address:"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: label",
+          "element": "<label>",
+          "context": "<form> > <p>",
+          "line_number": 10,
+          "column_number": 6,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "E-mail address:"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "critical",
+          "description": "Interactive element is not keyboard focusable: label",
+          "element": "<label>",
+          "context": "<fieldset> > <p>",
+          "line_number": 13,
+          "column_number": 7,
+          "suggested_fix": "Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.",
+          "wcag_criteria": [
+            "2.1.1",
+            "2.4.3"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Small"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: label",
+          "element": "<label>",
+          "context": "<fieldset> > <p>",
+          "line_number": 13,
+          "column_number": 7,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Small"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "critical",
+          "description": "Interactive element is not keyboard focusable: label",
+          "element": "<label>",
+          "context": "<fieldset> > <p>",
+          "line_number": 14,
+          "column_number": 7,
+          "suggested_fix": "Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.",
+          "wcag_criteria": [
+            "2.1.1",
+            "2.4.3"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Medium"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: label",
+          "element": "<label>",
+          "context": "<fieldset> > <p>",
+          "line_number": 14,
+          "column_number": 7,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Medium"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "critical",
+          "description": "Interactive element is not keyboard focusable: label",
+          "element": "<label>",
+          "context": "<fieldset> > <p>",
+          "line_number": 15,
+          "column_number": 7,
+          "suggested_fix": "Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.",
+          "wcag_criteria": [
+            "2.1.1",
+            "2.4.3"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Large"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: label",
+          "element": "<label>",
+          "context": "<fieldset> > <p>",
+          "line_number": 15,
+          "column_number": 7,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Large"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "critical",
+          "description": "Interactive element is not keyboard focusable: label",
+          "element": "<label>",
+          "context": "<fieldset> > <p>",
+          "line_number": 19,
+          "column_number": 7,
+          "suggested_fix": "Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.",
+          "wcag_criteria": [
+            "2.1.1",
+            "2.4.3"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Bacon"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: label",
+          "element": "<label>",
+          "context": "<fieldset> > <p>",
+          "line_number": 19,
+          "column_number": 7,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Bacon"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "critical",
+          "description": "Interactive element is not keyboard focusable: label",
+          "element": "<label>",
+          "context": "<fieldset> > <p>",
+          "line_number": 20,
+          "column_number": 7,
+          "suggested_fix": "Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.",
+          "wcag_criteria": [
+            "2.1.1",
+            "2.4.3"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Extra Cheese"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: label",
+          "element": "<label>",
+          "context": "<fieldset> > <p>",
+          "line_number": 20,
+          "column_number": 7,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Extra Cheese"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "critical",
+          "description": "Interactive element is not keyboard focusable: label",
+          "element": "<label>",
+          "context": "<fieldset> > <p>",
+          "line_number": 21,
+          "column_number": 7,
+          "suggested_fix": "Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.",
+          "wcag_criteria": [
+            "2.1.1",
+            "2.4.3"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Onion"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: label",
+          "element": "<label>",
+          "context": "<fieldset> > <p>",
+          "line_number": 21,
+          "column_number": 7,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Onion"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "critical",
+          "description": "Interactive element is not keyboard focusable: label",
+          "element": "<label>",
+          "context": "<fieldset> > <p>",
+          "line_number": 22,
+          "column_number": 7,
+          "suggested_fix": "Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.",
+          "wcag_criteria": [
+            "2.1.1",
+            "2.4.3"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Mushroom"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: label",
+          "element": "<label>",
+          "context": "<fieldset> > <p>",
+          "line_number": 22,
+          "column_number": 7,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Mushroom"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "critical",
+          "description": "Interactive element is not keyboard focusable: label",
+          "element": "<label>",
+          "context": "<form> > <p>",
+          "line_number": 24,
+          "column_number": 6,
+          "suggested_fix": "Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.",
+          "wcag_criteria": [
+            "2.1.1",
+            "2.4.3"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Preferred delivery time:"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: label",
+          "element": "<label>",
+          "context": "<form> > <p>",
+          "line_number": 24,
+          "column_number": 6,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Preferred delivery time:"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "critical",
+          "description": "Interactive element is not keyboard focusable: label",
+          "element": "<label>",
+          "context": "<form> > <p>",
+          "line_number": 25,
+          "column_number": 6,
+          "suggested_fix": "Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.",
+          "wcag_criteria": [
+            "2.1.1",
+            "2.4.3"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Delivery instructions:"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: label",
+          "element": "<label>",
+          "context": "<form> > <p>",
+          "line_number": 25,
+          "column_number": 6,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "label",
+            "classes": [],
+            "id": "",
+            "attributes": {},
+            "text": "Delivery instructions:"
+          }
+        },
+        {
+          "issue_type": "missing_skip_links",
+          "severity": "moderate",
+          "description": "Page missing skip links for keyboard navigation",
+          "element": "<body>",
+          "context": "Entire page",
+          "line_number": null,
+          "column_number": null,
+          "suggested_fix": "Add skip links at the beginning of the page to allow keyboard users to jump directly to main content, navigation, or other important sections. Example: <a href='#main'>Skip to main content</a>",
+          "wcag_criteria": [
+            "2.4.1"
+          ],
+          "additional_info": {
+            "page_title": "No title"
+          }
+        }
+      ],
+      "page_title": "",
+      "page_description": "",
+      "scan_duration": 1.393784999847412,
+      "status": "completed",
+      "error_message": null,
+      "metadata": {},
+      "summary": {
+        "total_issues": 43,
+        "critical_issues": 14,
+        "moderate_issues": 29,
+        "low_issues": 0,
+        "accessibility_score": 22.5
+      }
+    },
+    {
+      "url": "https://httpbin.org/links/10",
+      "timestamp": "2025-08-28T11:53:09.584578",
+      "issues": [
+        {
+          "issue_type": "improper_heading_hierarchy",
+          "severity": "moderate",
+          "description": "Page has no heading elements",
+          "element": "<body>",
+          "context": "Entire page",
+          "line_number": null,
+          "column_number": null,
+          "suggested_fix": "Add heading elements (h1, h2, h3, etc.) to structure your content. Start with an h1 that describes the main topic of the page, then use h2, h3, etc. for subsections.",
+          "wcag_criteria": [
+            "1.3.1",
+            "2.4.6"
+          ],
+          "additional_info": {
+            "page_title": "Links"
+          }
+        },
+        {
+          "issue_type": "non_descriptive_links",
+          "severity": "moderate",
+          "description": "Link text is not descriptive: '1'",
+          "element": "<a href='/links/10/1'>1</a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 47,
+          "suggested_fix": "Replace the generic text '1' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.",
+          "wcag_criteria": [
+            "2.4.4",
+            "2.4.9"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/1"
+            },
+            "text": "1"
+          }
+        },
+        {
+          "issue_type": "non_descriptive_links",
+          "severity": "moderate",
+          "description": "Link text is not descriptive: '2'",
+          "element": "<a href='/links/10/2'>2</a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 75,
+          "suggested_fix": "Replace the generic text '2' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.",
+          "wcag_criteria": [
+            "2.4.4",
+            "2.4.9"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/2"
+            },
+            "text": "2"
+          }
+        },
+        {
+          "issue_type": "non_descriptive_links",
+          "severity": "moderate",
+          "description": "Link text is not descriptive: '3'",
+          "element": "<a href='/links/10/3'>3</a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 103,
+          "suggested_fix": "Replace the generic text '3' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.",
+          "wcag_criteria": [
+            "2.4.4",
+            "2.4.9"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/3"
+            },
+            "text": "3"
+          }
+        },
+        {
+          "issue_type": "non_descriptive_links",
+          "severity": "moderate",
+          "description": "Link text is not descriptive: '4'",
+          "element": "<a href='/links/10/4'>4</a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 131,
+          "suggested_fix": "Replace the generic text '4' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.",
+          "wcag_criteria": [
+            "2.4.4",
+            "2.4.9"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/4"
+            },
+            "text": "4"
+          }
+        },
+        {
+          "issue_type": "non_descriptive_links",
+          "severity": "moderate",
+          "description": "Link text is not descriptive: '5'",
+          "element": "<a href='/links/10/5'>5</a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 159,
+          "suggested_fix": "Replace the generic text '5' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.",
+          "wcag_criteria": [
+            "2.4.4",
+            "2.4.9"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/5"
+            },
+            "text": "5"
+          }
+        },
+        {
+          "issue_type": "non_descriptive_links",
+          "severity": "moderate",
+          "description": "Link text is not descriptive: '6'",
+          "element": "<a href='/links/10/6'>6</a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 187,
+          "suggested_fix": "Replace the generic text '6' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.",
+          "wcag_criteria": [
+            "2.4.4",
+            "2.4.9"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/6"
+            },
+            "text": "6"
+          }
+        },
+        {
+          "issue_type": "non_descriptive_links",
+          "severity": "moderate",
+          "description": "Link text is not descriptive: '7'",
+          "element": "<a href='/links/10/7'>7</a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 215,
+          "suggested_fix": "Replace the generic text '7' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.",
+          "wcag_criteria": [
+            "2.4.4",
+            "2.4.9"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/7"
+            },
+            "text": "7"
+          }
+        },
+        {
+          "issue_type": "non_descriptive_links",
+          "severity": "moderate",
+          "description": "Link text is not descriptive: '8'",
+          "element": "<a href='/links/10/8'>8</a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 243,
+          "suggested_fix": "Replace the generic text '8' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.",
+          "wcag_criteria": [
+            "2.4.4",
+            "2.4.9"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/8"
+            },
+            "text": "8"
+          }
+        },
+        {
+          "issue_type": "non_descriptive_links",
+          "severity": "moderate",
+          "description": "Link text is not descriptive: '9'",
+          "element": "<a href='/links/10/9'>9</a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 271,
+          "suggested_fix": "Replace the generic text '9' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.",
+          "wcag_criteria": [
+            "2.4.4",
+            "2.4.9"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/9"
+            },
+            "text": "9"
+          }
+        },
+        {
+          "issue_type": "missing_landmarks",
+          "severity": "critical",
+          "description": "Page missing main landmark",
+          "element": "<body>",
+          "context": "Entire page",
+          "line_number": null,
+          "column_number": null,
+          "suggested_fix": "Add a <main> element or role='main' attribute to identify the main content area of the page. This helps screen readers navigate to the primary content.",
+          "wcag_criteria": [
+            "1.3.1",
+            "2.4.1"
+          ],
+          "additional_info": {
+            "page_title": "Links"
+          }
+        },
+        {
+          "issue_type": "missing_landmarks",
+          "severity": "critical",
+          "description": "Page missing main landmark",
+          "element": "<body>",
+          "context": "Entire page",
+          "line_number": null,
+          "column_number": null,
+          "suggested_fix": "Add a <main> element or role='main' attribute to identify the main content area of the page. This helps screen readers navigate to the primary content.",
+          "wcag_criteria": [
+            "1.3.1",
+            "2.4.1"
+          ],
+          "additional_info": {
+            "page_title": "Links"
+          }
+        },
+        {
+          "issue_type": "missing_skip_links",
+          "severity": "moderate",
+          "description": "Page missing skip links",
+          "element": "<body>",
+          "context": "Entire page",
+          "line_number": null,
+          "column_number": null,
+          "suggested_fix": "Add skip links at the beginning of the page to allow keyboard users to jump directly to main content, navigation, or other important sections. Example: <a href='#main'>Skip to main content</a>",
+          "wcag_criteria": [
+            "2.4.1"
+          ],
+          "additional_info": {
+            "page_title": "Links"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: a",
+          "element": "<a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 47,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/1"
+            },
+            "text": "1"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: a",
+          "element": "<a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 75,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/2"
+            },
+            "text": "2"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: a",
+          "element": "<a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 103,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/3"
+            },
+            "text": "3"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: a",
+          "element": "<a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 131,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/4"
+            },
+            "text": "4"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: a",
+          "element": "<a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 159,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/5"
+            },
+            "text": "5"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: a",
+          "element": "<a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 187,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/6"
+            },
+            "text": "6"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: a",
+          "element": "<a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 215,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/7"
+            },
+            "text": "7"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: a",
+          "element": "<a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 243,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/8"
+            },
+            "text": "8"
+          }
+        },
+        {
+          "issue_type": "keyboard_navigation",
+          "severity": "moderate",
+          "description": "Focusable element missing focus indicator: a",
+          "element": "<a>",
+          "context": "<html> > <body>",
+          "line_number": 1,
+          "column_number": 271,
+          "suggested_fix": "Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.",
+          "wcag_criteria": [
+            "2.4.7"
+          ],
+          "additional_info": {
+            "tag": "a",
+            "classes": [],
+            "id": "",
+            "attributes": {
+              "href": "/links/10/9"
+            },
+            "text": "9"
+          }
+        },
+        {
+          "issue_type": "missing_skip_links",
+          "severity": "moderate",
+          "description": "Page missing skip links for keyboard navigation",
+          "element": "<body>",
+          "context": "Entire page",
+          "line_number": null,
+          "column_number": null,
+          "suggested_fix": "Add skip links at the beginning of the page to allow keyboard users to jump directly to main content, navigation, or other important sections. Example: <a href='#main'>Skip to main content</a>",
+          "wcag_criteria": [
+            "2.4.1"
+          ],
+          "additional_info": {
+            "page_title": "Links"
+          }
+        }
+      ],
+      "page_title": "Links",
+      "page_description": "",
+      "scan_duration": 3.0348451137542725,
+      "status": "completed",
+      "error_message": null,
+      "metadata": {},
+      "summary": {
+        "total_issues": 23,
+        "critical_issues": 2,
+        "moderate_issues": 21,
+        "low_issues": 0,
+        "accessibility_score": 30.4
+      }
+    }
+  ]
+}

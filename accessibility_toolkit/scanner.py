@@ -4,6 +4,8 @@ Main accessibility scanner that orchestrates all checks.
 
 import asyncio
 import time
+import os
+import platform
 from typing import List, Dict, Any, Optional
 from urllib.parse import urlparse
 import aiohttp
@@ -69,18 +71,47 @@ class AccessibilityScanner:
     async def start(self):
         """Start the browser and session."""
         if not self.browser:
-            self.browser = await launch(
-                headless=True,
-                args=[
-                    '--no-sandbox',
-                    '--disable-setuid-sandbox',
-                    '--disable-dev-shm-usage',
-                    '--disable-accelerated-2d-canvas',
-                    '--no-first-run',
-                    '--no-zygote',
-                    '--disable-gpu'
+            try:
+                # Try to use system Chrome first (better for Apple Silicon)
+                chrome_paths = [
+                    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+                    '/Applications/Chromium.app/Contents/MacOS/Chromium',
+                    '/usr/bin/google-chrome',
+                    '/usr/bin/chromium'
                 ]
-            )
+                
+                executable_path = None
+                for path in chrome_paths:
+                    if os.path.exists(path):
+                        executable_path = path
+                        break
+                
+                launch_options = {
+                    'headless': True,
+                    'args': [
+                        '--no-sandbox',
+                        '--disable-setuid-sandbox',
+                        '--disable-dev-shm-usage',
+                        '--disable-accelerated-2d-canvas',
+                        '--no-first-run',
+                        '--no-zygote',
+                        '--disable-gpu'
+                    ]
+                }
+                
+                if executable_path:
+                    launch_options['executablePath'] = executable_path
+                    print(f"✅ Using system Chrome: {executable_path}")
+                else:
+                    print("⚠️  No system Chrome found, using Pyppeteer's Chromium")
+                
+                self.browser = await launch(**launch_options)
+                print("✅ Headless browser initialized successfully")
+                
+            except Exception as e:
+                print(f"❌ Failed to initialize headless browser: {e}")
+                print("   Falling back to HTTP-only mode for basic checks")
+                self.browser = None
         
         if not self.session:
             self.session = aiohttp.ClientSession(

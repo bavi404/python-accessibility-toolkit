@@ -1,0 +1,2153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Scan Report</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .header .subtitle {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        .summary {
+            padding: 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e9ecef;
+        }
+        .summary-card .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .summary-card .label {
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        .content {
+            padding: 30px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            color: #495057;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .issue-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        .issue-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .issue-severity {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .severity-critical {
+            background: #dc3545;
+            color: white;
+        }
+        .severity-moderate {
+            background: #fd7e14;
+            color: white;
+        }
+        .severity-low {
+            background: #28a745;
+            color: white;
+        }
+        .issue-content {
+            padding: 20px;
+        }
+        .issue-description {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #495057;
+        }
+        .issue-details {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+        .issue-details strong {
+            color: #495057;
+        }
+        .issue-fix {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+        .url-section {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        .url-section h3 {
+            margin: 0 0 10px 0;
+            color: #495057;
+        }
+        .url-section .url {
+            font-family: monospace;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+        }
+        .score-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        .no-issues {
+            text-align: center;
+            color: #6c757d;
+            font-style: italic;
+            padding: 40px;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #6c757d;
+            border-top: 1px solid #e9ecef;
+        }
+        @media (max-width: 768px) {
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+            .issue-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 Accessibility Scan Report</h1>
+            <p class="subtitle">Generated on 2025-08-28 11:53:09</p>
+        </div>
+        
+        <div class="summary">
+            <h2>📊 Scan Summary</h2>
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <div class="number">3</div>
+                    <div class="label">URLs Scanned</div>
+                </div>
+                <div class="summary-card">
+                    <div class="number">3</div>
+                    <div class="label">Successful Scans</div>
+                </div>
+                <div class="summary-card">
+                    <div class="number">70</div>
+                    <div class="label">Total Issues</div>
+                </div>
+                <div class="summary-card">
+                    <div class="number">23.2</div>
+                    <div class="label">Avg Score</div>
+                </div>
+            </div>
+            
+            <div class="summary-grid" style="margin-top: 20px;">
+                <div class="summary-card">
+                    <div class="number" style="color: #dc3545;">18</div>
+                    <div class="label">Critical Issues</div>
+                </div>
+                <div class="summary-card">
+                    <div class="number" style="color: #fd7e14;">52</div>
+                    <div class="label">Moderate Issues</div>
+                </div>
+                <div class="summary-card">
+                    <div class="number" style="color: #28a745;">0</div>
+                    <div class="label">Low Issues</div>
+                </div>
+                <div class="summary-card">
+                    <div class="number">5.9s</div>
+                    <div class="label">Total Duration</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            
+            <div class="section">
+                <h2>🚨 Critical Issues (18)</h2>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/html</h3>
+                    <div class="url">https://httpbin.org/html</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 16.7/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Missing Landmarks</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Page missing main landmark</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <body><br>
+                            <strong>Context:</strong> Entire page<br>
+                            
+                            <strong>WCAG Criteria:</strong> 1.3.1, 2.4.1
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a <main> element or role='main' attribute to identify the main content area of the page. This helps screen readers navigate to the primary content.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/html</h3>
+                    <div class="url">https://httpbin.org/html</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 16.7/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Missing Landmarks</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Page missing main landmark</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <body><br>
+                            <strong>Context:</strong> Entire page<br>
+                            
+                            <strong>WCAG Criteria:</strong> 1.3.1, 2.4.1
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a <main> element or role='main' attribute to identify the main content area of the page. This helps screen readers navigate to the primary content.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Missing Landmarks</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Page missing main landmark</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <body><br>
+                            <strong>Context:</strong> Entire page<br>
+                            
+                            <strong>WCAG Criteria:</strong> 1.3.1, 2.4.1
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a <main> element or role='main' attribute to identify the main content area of the page. This helps screen readers navigate to the primary content.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Missing Landmarks</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Page missing main landmark</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <body><br>
+                            <strong>Context:</strong> Entire page<br>
+                            
+                            <strong>WCAG Criteria:</strong> 1.3.1, 2.4.1
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a <main> element or role='main' attribute to identify the main content area of the page. This helps screen readers navigate to the primary content.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Interactive element is not keyboard focusable: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <form> > <p><br>
+                            <strong>Line:</strong> 8<br>
+                            <strong>WCAG Criteria:</strong> 2.1.1, 2.4.3
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Interactive element is not keyboard focusable: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <form> > <p><br>
+                            <strong>Line:</strong> 9<br>
+                            <strong>WCAG Criteria:</strong> 2.1.1, 2.4.3
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Interactive element is not keyboard focusable: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <form> > <p><br>
+                            <strong>Line:</strong> 10<br>
+                            <strong>WCAG Criteria:</strong> 2.1.1, 2.4.3
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Interactive element is not keyboard focusable: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <fieldset> > <p><br>
+                            <strong>Line:</strong> 13<br>
+                            <strong>WCAG Criteria:</strong> 2.1.1, 2.4.3
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Interactive element is not keyboard focusable: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <fieldset> > <p><br>
+                            <strong>Line:</strong> 14<br>
+                            <strong>WCAG Criteria:</strong> 2.1.1, 2.4.3
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Interactive element is not keyboard focusable: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <fieldset> > <p><br>
+                            <strong>Line:</strong> 15<br>
+                            <strong>WCAG Criteria:</strong> 2.1.1, 2.4.3
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Interactive element is not keyboard focusable: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <fieldset> > <p><br>
+                            <strong>Line:</strong> 19<br>
+                            <strong>WCAG Criteria:</strong> 2.1.1, 2.4.3
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Interactive element is not keyboard focusable: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <fieldset> > <p><br>
+                            <strong>Line:</strong> 20<br>
+                            <strong>WCAG Criteria:</strong> 2.1.1, 2.4.3
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Interactive element is not keyboard focusable: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <fieldset> > <p><br>
+                            <strong>Line:</strong> 21<br>
+                            <strong>WCAG Criteria:</strong> 2.1.1, 2.4.3
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Interactive element is not keyboard focusable: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <fieldset> > <p><br>
+                            <strong>Line:</strong> 22<br>
+                            <strong>WCAG Criteria:</strong> 2.1.1, 2.4.3
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Interactive element is not keyboard focusable: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <form> > <p><br>
+                            <strong>Line:</strong> 24<br>
+                            <strong>WCAG Criteria:</strong> 2.1.1, 2.4.3
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Interactive element is not keyboard focusable: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <form> > <p><br>
+                            <strong>Line:</strong> 25<br>
+                            <strong>WCAG Criteria:</strong> 2.1.1, 2.4.3
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Make this element keyboard focusable by adding tabindex='0' or ensuring it has proper focus management. All interactive elements should be accessible via keyboard navigation.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Missing Landmarks</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Page missing main landmark</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <body><br>
+                            <strong>Context:</strong> Entire page<br>
+                            
+                            <strong>WCAG Criteria:</strong> 1.3.1, 2.4.1
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a <main> element or role='main' attribute to identify the main content area of the page. This helps screen readers navigate to the primary content.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-critical">Critical</span>
+                        <span>Missing Landmarks</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Page missing main landmark</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <body><br>
+                            <strong>Context:</strong> Entire page<br>
+                            
+                            <strong>WCAG Criteria:</strong> 1.3.1, 2.4.1
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a <main> element or role='main' attribute to identify the main content area of the page. This helps screen readers navigate to the primary content.
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            
+            
+            <div class="section">
+                <h2>⚠️ Moderate Issues (52)</h2>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/html</h3>
+                    <div class="url">https://httpbin.org/html</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 16.7/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Missing Skip Links</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Page missing skip links</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <body><br>
+                            <strong>Context:</strong> Entire page<br>
+                            
+                            <strong>WCAG Criteria:</strong> 2.4.1
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add skip links at the beginning of the page to allow keyboard users to jump directly to main content, navigation, or other important sections. Example: <a href='#main'>Skip to main content</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/html</h3>
+                    <div class="url">https://httpbin.org/html</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 16.7/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Missing Skip Links</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Page missing skip links for keyboard navigation</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <body><br>
+                            <strong>Context:</strong> Entire page<br>
+                            
+                            <strong>WCAG Criteria:</strong> 2.4.1
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add skip links at the beginning of the page to allow keyboard users to jump directly to main content, navigation, or other important sections. Example: <a href='#main'>Skip to main content</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Improper Heading Hierarchy</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Page has no heading elements</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <body><br>
+                            <strong>Context:</strong> Entire page<br>
+                            
+                            <strong>WCAG Criteria:</strong> 1.3.1, 2.4.6
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add heading elements (h1, h2, h3, etc.) to structure your content. Start with an h1 that describes the main topic of the page, then use h2, h3, etc. for subsections.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Inaccessible Forms</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Form missing submit button</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <form><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 7<br>
+                            <strong>WCAG Criteria:</strong> 2.1.1, 3.2.2
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a submit button (<input type='submit'> or <button type='submit'>) to allow users to submit the form.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Missing Skip Links</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Page missing skip links</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <body><br>
+                            <strong>Context:</strong> Entire page<br>
+                            
+                            <strong>WCAG Criteria:</strong> 2.4.1
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add skip links at the beginning of the page to allow keyboard users to jump directly to main content, navigation, or other important sections. Example: <a href='#main'>Skip to main content</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: button</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <button><br>
+                            <strong>Context:</strong> <form> > <p><br>
+                            <strong>Line:</strong> 26<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: input</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <input><br>
+                            <strong>Context:</strong> <p> > <label><br>
+                            <strong>Line:</strong> 8<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: input</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <input><br>
+                            <strong>Context:</strong> <p> > <label><br>
+                            <strong>Line:</strong> 9<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: input</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <input><br>
+                            <strong>Context:</strong> <p> > <label><br>
+                            <strong>Line:</strong> 10<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: input</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <input><br>
+                            <strong>Context:</strong> <p> > <label><br>
+                            <strong>Line:</strong> 13<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: input</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <input><br>
+                            <strong>Context:</strong> <p> > <label><br>
+                            <strong>Line:</strong> 14<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: input</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <input><br>
+                            <strong>Context:</strong> <p> > <label><br>
+                            <strong>Line:</strong> 15<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: input</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <input><br>
+                            <strong>Context:</strong> <p> > <label><br>
+                            <strong>Line:</strong> 19<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: input</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <input><br>
+                            <strong>Context:</strong> <p> > <label><br>
+                            <strong>Line:</strong> 20<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: input</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <input><br>
+                            <strong>Context:</strong> <p> > <label><br>
+                            <strong>Line:</strong> 21<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: input</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <input><br>
+                            <strong>Context:</strong> <p> > <label><br>
+                            <strong>Line:</strong> 22<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: input</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <input><br>
+                            <strong>Context:</strong> <p> > <label><br>
+                            <strong>Line:</strong> 24<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: textarea</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <textarea><br>
+                            <strong>Context:</strong> <p> > <label><br>
+                            <strong>Line:</strong> 25<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <form> > <p><br>
+                            <strong>Line:</strong> 8<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <form> > <p><br>
+                            <strong>Line:</strong> 9<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <form> > <p><br>
+                            <strong>Line:</strong> 10<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <fieldset> > <p><br>
+                            <strong>Line:</strong> 13<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <fieldset> > <p><br>
+                            <strong>Line:</strong> 14<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <fieldset> > <p><br>
+                            <strong>Line:</strong> 15<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <fieldset> > <p><br>
+                            <strong>Line:</strong> 19<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <fieldset> > <p><br>
+                            <strong>Line:</strong> 20<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <fieldset> > <p><br>
+                            <strong>Line:</strong> 21<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <fieldset> > <p><br>
+                            <strong>Line:</strong> 22<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <form> > <p><br>
+                            <strong>Line:</strong> 24<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: label</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <label><br>
+                            <strong>Context:</strong> <form> > <p><br>
+                            <strong>Line:</strong> 25<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/forms/post</h3>
+                    <div class="url">https://httpbin.org/forms/post</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 22.5/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Missing Skip Links</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Page missing skip links for keyboard navigation</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <body><br>
+                            <strong>Context:</strong> Entire page<br>
+                            
+                            <strong>WCAG Criteria:</strong> 2.4.1
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add skip links at the beginning of the page to allow keyboard users to jump directly to main content, navigation, or other important sections. Example: <a href='#main'>Skip to main content</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Improper Heading Hierarchy</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Page has no heading elements</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <body><br>
+                            <strong>Context:</strong> Entire page<br>
+                            
+                            <strong>WCAG Criteria:</strong> 1.3.1, 2.4.6
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add heading elements (h1, h2, h3, etc.) to structure your content. Start with an h1 that describes the main topic of the page, then use h2, h3, etc. for subsections.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Non Descriptive Links</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Link text is not descriptive: '1'</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a href='/links/10/1'>1</a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.4, 2.4.9
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Replace the generic text '1' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Non Descriptive Links</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Link text is not descriptive: '2'</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a href='/links/10/2'>2</a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.4, 2.4.9
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Replace the generic text '2' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Non Descriptive Links</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Link text is not descriptive: '3'</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a href='/links/10/3'>3</a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.4, 2.4.9
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Replace the generic text '3' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Non Descriptive Links</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Link text is not descriptive: '4'</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a href='/links/10/4'>4</a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.4, 2.4.9
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Replace the generic text '4' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Non Descriptive Links</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Link text is not descriptive: '5'</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a href='/links/10/5'>5</a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.4, 2.4.9
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Replace the generic text '5' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Non Descriptive Links</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Link text is not descriptive: '6'</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a href='/links/10/6'>6</a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.4, 2.4.9
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Replace the generic text '6' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Non Descriptive Links</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Link text is not descriptive: '7'</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a href='/links/10/7'>7</a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.4, 2.4.9
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Replace the generic text '7' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Non Descriptive Links</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Link text is not descriptive: '8'</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a href='/links/10/8'>8</a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.4, 2.4.9
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Replace the generic text '8' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Non Descriptive Links</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Link text is not descriptive: '9'</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a href='/links/10/9'>9</a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.4, 2.4.9
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Replace the generic text '9' with more descriptive text that explains where the link goes or what it does. For example, instead of 'Click here', use 'Read our privacy policy' or 'Download the report'.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Missing Skip Links</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Page missing skip links</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <body><br>
+                            <strong>Context:</strong> Entire page<br>
+                            
+                            <strong>WCAG Criteria:</strong> 2.4.1
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add skip links at the beginning of the page to allow keyboard users to jump directly to main content, navigation, or other important sections. Example: <a href='#main'>Skip to main content</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: a</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: a</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: a</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: a</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: a</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: a</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: a</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: a</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Keyboard Navigation</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Focusable element missing focus indicator: a</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <a><br>
+                            <strong>Context:</strong> <html> > <body><br>
+                            <strong>Line:</strong> 1<br>
+                            <strong>WCAG Criteria:</strong> 2.4.7
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add a visible focus indicator to this element using CSS (outline, border) or focus-related classes. Users need to see which element has focus.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="url-section">
+                    <h3>URL: https://httpbin.org/links/10</h3>
+                    <div class="url">https://httpbin.org/links/10</div>
+                    <div style="margin-top: 10px;">
+                        <span class="score-badge">Score: 30.4/100</span>
+                    </div>
+                </div>
+                <div class="issue-card">
+                    <div class="issue-header">
+                        <span class="issue-severity severity-moderate">Moderate</span>
+                        <span>Missing Skip Links</span>
+                    </div>
+                    <div class="issue-content">
+                        <div class="issue-description">Page missing skip links for keyboard navigation</div>
+                        <div class="issue-details">
+                            <strong>Element:</strong> <body><br>
+                            <strong>Context:</strong> Entire page<br>
+                            
+                            <strong>WCAG Criteria:</strong> 2.4.1
+                        </div>
+                        <div class="issue-fix">
+                            <strong>Suggested Fix:</strong><br>
+                            Add skip links at the beginning of the page to allow keyboard users to jump directly to main content, navigation, or other important sections. Example: <a href='#main'>Skip to main content</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            
+            
+            
+            
+        </div>
+        
+        <div class="footer">
+            <p>Generated by Pythonic Accessibility Toolkit</p>
+            <p>For more information about web accessibility, visit <a href="https://www.w3.org/WAI/" target="_blank">W3C Web Accessibility Initiative</a></p>
+        </div>
+    </div>
+</body>
+</html>
+        

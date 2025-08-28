@@ -51,6 +51,28 @@ The Pythonic Accessibility Toolkit provides an automated solution for developers
 4. Parse and categorize issues by type and severity
 5. Generate comprehensive reports with fix suggestions
 
+## 🌟 Features
+
+### **Python Toolkit**
+- **Comprehensive Accessibility Checks**: Alt text, color contrast, heading structure, forms, links, ARIA, landmarks, and keyboard navigation
+- **Multiple Output Formats**: HTML, JSON, CSV, and plain text reports
+- **Extensible Architecture**: Easy to add custom accessibility checks
+- **Async Support**: Efficient concurrent scanning of multiple URLs
+- **Professional Reports**: Detailed findings with actionable suggestions
+- **Command Line Interface**: Quick scanning from terminal
+- **Configuration Management**: YAML-based settings
+- **Unit Tests**: Reliable and maintainable code
+
+### **Browser Extension**
+- **Real-Time Scanning**: Instant accessibility analysis on any webpage
+- **Smart Auto-Fixes**: Temporary improvements for common issues
+- **Visual Indicators**: Clear highlighting of accessibility problems
+- **User-Friendly Interface**: Intuitive popup with issue categorization
+- **Export Functionality**: Generate reports for team review
+- **Customizable Settings**: Personalized accessibility experience
+- **Cross-Browser Support**: Works on Chrome, Edge, and Firefox
+- **Privacy-First Design**: No data collection, local processing only
+
 ## Installation
 
 ```bash
@@ -66,6 +88,8 @@ export WAVE_API_KEY="your_api_key_here"
 ```
 
 ## Quick Start
+
+### **Python Toolkit**
 
 ```python
 from accessibility_toolkit import AccessibilityScanner
@@ -83,6 +107,18 @@ results = scanner.scan_multiple(urls)
 # Generate report
 scanner.generate_report(results, output_format="html")
 ```
+
+### **Browser Extension**
+
+The project also includes a **browser extension** for real-time accessibility scanning:
+
+1. **Install the extension** from the `browser-extension/` folder
+2. **Click the extension icon** on any webpage
+3. **Scan for issues** with one click
+4. **Apply temporary fixes** to improve accessibility
+5. **Export reports** for team review
+
+See [Browser Extension Documentation](browser-extension/README.md) for detailed installation and usage instructions.
 
 ## Command Line Interface
 

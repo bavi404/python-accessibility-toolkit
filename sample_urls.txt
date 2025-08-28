@@ -1,0 +1,14 @@
+# Sample URLs for accessibility testing
+# Lines starting with # are comments and will be ignored
+
+# Simple test sites
+https://httpbin.org/html
+https://httpbin.org/forms/post
+
+# Popular websites
+https://github.com
+https://stackoverflow.com
+
+# Add your own websites here
+# https://your-website.com
+# https://another-site.com
