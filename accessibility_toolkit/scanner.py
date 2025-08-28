@@ -301,6 +301,33 @@ class AccessibilityScanner:
             
         except Exception as e:
             print(f"Pyppeteer failed for {url}: {e}")
+            # Try Playwright if available
+            return await self._get_page_content_with_playwright(url)
+
+    async def _get_page_content_with_playwright(self, url: str) -> Optional[str]:
+        """Get page content using Playwright (preferred if installed)."""
+        try:
+            from playwright.async_api import async_playwright  # type: ignore
+        except Exception:
+            return None
+        try:
+            async with async_playwright() as pw:
+                # Prefer Chromium; falls back to WebKit if needed
+                browser = await pw.chromium.launch(headless=True)
+                context = await browser.new_context(
+                    user_agent=self.user_agent,
+                    viewport=self.viewport,
+                )
+                page = await context.new_page()
+                await page.goto(url, wait_until='networkidle', timeout=self.timeout * 1000)
+                if self.wait_for > 0:
+                    await page.wait_for_timeout(self.wait_for)
+                content = await page.content()
+                await context.close()
+                await browser.close()
+                return content
+        except Exception as e:
+            print(f"Playwright failed for {url}: {e}")
             return None
     
     def _is_valid_url(self, url: str) -> bool:
