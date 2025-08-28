@@ -204,365 +204,309 @@ class ReportGenerator:
         return filepath
     
     def _get_html_template(self) -> Template:
-        """Get the HTML template for reports."""
+        """Get the compact HTML template for reports (grouped by URL with tables)."""
         template_content = """
 <!DOCTYPE html>
-<html lang="en">
+<html lang=\"en\">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
     <title>Accessibility Scan Report</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            font-weight: 300;
-        }
-        .header .subtitle {
-            margin: 10px 0 0 0;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-        .summary {
-            padding: 30px;
-            background: #f8f9fa;
-            border-bottom: 1px solid #e9ecef;
-        }
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .summary-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid #e9ecef;
-        }
-        .summary-card .number {
-            font-size: 2em;
-            font-weight: bold;
-            color: #667eea;
-        }
-        .summary-card .label {
-            color: #6c757d;
-            margin-top: 5px;
-        }
-        .content {
-            padding: 30px;
-        }
-        .section {
-            margin-bottom: 40px;
-        }
-        .section h2 {
-            color: #495057;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        .issue-card {
-            background: white;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            overflow: hidden;
-        }
-        .issue-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .issue-severity {
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        .severity-critical {
-            background: #dc3545;
-            color: white;
-        }
-        .severity-moderate {
-            background: #fd7e14;
-            color: white;
-        }
-        .severity-low {
-            background: #28a745;
-            color: white;
-        }
-        .issue-content {
-            padding: 20px;
-        }
-        .issue-description {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #495057;
-        }
-        .issue-details {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 6px;
-            margin: 15px 0;
-        }
-        .issue-details strong {
-            color: #495057;
-        }
-        .issue-fix {
-            background: #d4edda;
-            border: 1px solid #c3e6cb;
-            color: #155724;
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 15px;
-        }
-        .url-section {
-            background: #e9ecef;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-        }
-        .url-section h3 {
-            margin: 0 0 10px 0;
-            color: #495057;
-        }
-        .url-section .url {
-            font-family: monospace;
-            background: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            border: 1px solid #ced4da;
-        }
-        .score-badge {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
-        }
-        .no-issues {
-            text-align: center;
-            color: #6c757d;
-            font-style: italic;
-            padding: 40px;
-        }
-        .footer {
-            background: #f8f9fa;
-            padding: 20px;
-            text-align: center;
-            color: #6c757d;
-            border-top: 1px solid #e9ecef;
-        }
-        @media (max-width: 768px) {
-            .summary-grid {
-                grid-template-columns: 1fr;
-            }
-            .issue-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; background: #f6f7fb; color: #2d3748; }
+        .wrap { max-width: 1200px; margin: 0 auto; padding: 24px; }
+        .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .head { background: linear-gradient(135deg,#5a67d8,#805ad5); color: #fff; padding: 28px; border-radius: 10px; }
+        .head h1 { margin: 0; font-weight: 500; }
+        .sub { opacity:.9; margin-top:6px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 12px; margin-top: 16px; }
+        .kpi { background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:14px; text-align:center; }
+        .kpi .n { font-size: 22px; font-weight: 700; color:#5a67d8; }
+        .kpi .l { font-size: 12px; color:#718096; margin-top: 4px; }
+        .section { margin-top: 24px; }
+        .section h2 { margin:0 0 12px 0; font-size:18px; font-weight:600; border-left:4px solid #5a67d8; padding-left:10px; }
+        .site { margin-top: 16px; }
+        .site .site-head { display:flex; flex-wrap:wrap; gap:8px; justify-content:space-between; align-items:center; padding:14px 16px; background:#f7fafc; border-bottom:1px solid #e2e8f0; border-top-left-radius:10px; border-top-right-radius:10px; }
+        .site .url { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background:#fff; border:1px solid #e2e8f0; padding:6px 10px; border-radius:6px; }
+        .badge { background:#5a67d8; color:#fff; border-radius:999px; padding:4px 10px; font-size:12px; font-weight:700; }
+        .toolbar { display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:10px 12px; border-bottom:1px solid #edf2f7; background:#fff; }
+        .pill { border:1px solid #cbd5e0; border-radius:999px; padding:4px 10px; font-size:12px; cursor:pointer; user-select:none; }
+        .pill.active { background:#2b6cb0; color:#fff; border-color:#2b6cb0; }
+        .btn { background:#edf2f7; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; font-size:12px; cursor:pointer; }
+        .btn:hover { background:#e2e8f0; }
+        table { width:100%; border-collapse:collapse; }
+        th, td { border-bottom:1px solid #edf2f7; text-align:left; padding:10px 8px; vertical-align: top; }
+        th { background:#fafafa; font-weight:600; color:#4a5568; position: sticky; top: 0; }
+        .sev { font-weight:700; padding:2px 8px; border-radius:999px; font-size:12px; display:inline-block; }
+        .sev.critical { background:#e53e3e; color:#fff; }
+        .sev.moderate { background:#dd6b20; color:#fff; }
+        .sev.low { background:#38a169; color:#fff; }
+        details { background:#fff; border:1px solid #e2e8f0; border-radius:8px; overflow:hidden; }
+        summary { cursor:pointer; list-style:none; padding:10px 12px; font-weight:600; }
+        summary::-webkit-details-marker { display:none; }
+        .muted { color:#718096; font-size:12px; }
+        .fix { background:#e6fffa; border:1px solid #b2f5ea; color:#234e52; padding:8px 10px; border-radius:6px; }
+        .footer { margin-top: 22px; text-align:center; color:#718096; font-size:12px; }
+        @media (max-width: 720px) { .grid { grid-template-columns: repeat(2,1fr);} th:nth-child(5), td:nth-child(5) { display:none; } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🔍 Accessibility Scan Report</h1>
-            <p class="subtitle">Generated on {{ generated_at }}</p>
-        </div>
-        
-        <div class="summary">
-            <h2>📊 Scan Summary</h2>
-            <div class="summary-grid">
-                <div class="summary-card">
-                    <div class="number">{{ total_urls }}</div>
-                    <div class="label">URLs Scanned</div>
-                </div>
-                <div class="summary-card">
-                    <div class="number">{{ successful_scans }}</div>
-                    <div class="label">Successful Scans</div>
-                </div>
-                <div class="summary-card">
-                    <div class="number">{{ summary.total_issues }}</div>
-                    <div class="label">Total Issues</div>
-                </div>
-                <div class="summary-card">
-                    <div class="number">{{ "%.1f"|format(summary.average_accessibility_score) }}</div>
-                    <div class="label">Avg Score</div>
-                </div>
-            </div>
-            
-            <div class="summary-grid" style="margin-top: 20px;">
-                <div class="summary-card">
-                    <div class="number" style="color: #dc3545;">{{ summary.critical_issues }}</div>
-                    <div class="label">Critical Issues</div>
-                </div>
-                <div class="summary-card">
-                    <div class="number" style="color: #fd7e14;">{{ summary.moderate_issues }}</div>
-                    <div class="label">Moderate Issues</div>
-                </div>
-                <div class="summary-card">
-                    <div class="number" style="color: #28a745;">{{ summary.low_issues }}</div>
-                    <div class="label">Low Issues</div>
-                </div>
-                <div class="summary-card">
-                    <div class="number">{{ "%.1f"|format(summary.scan_duration) }}s</div>
-                    <div class="label">Total Duration</div>
-                </div>
+    <div class=\"wrap\">
+        <div class=\"head card\"> 
+            <h1>Accessibility Scan Report</h1>
+            <div class=\"sub\">Generated {{ generated_at }}</div>
+            <div class=\"grid\" style=\"margin-top:12px\">
+                <div class=\"kpi\"><div class=\"n\">{{ total_urls }}</div><div class=\"l\">URLs</div></div>
+                <div class=\"kpi\"><div class=\"n\">{{ successful_scans }}</div><div class=\"l\">Successful</div></div>
+                <div class=\"kpi\"><div class=\"n\">{{ summary.total_issues }}</div><div class=\"l\">Total Issues</div></div>
+                <div class=\"kpi\"><div class=\"n\">{{ "%.1f"|format(summary.average_accessibility_score) }}</div><div class=\"l\">Avg Score</div></div>
             </div>
         </div>
-        
-        <div class="content">
-            {% if critical_issues %}
-            <div class="section">
-                <h2>🚨 Critical Issues ({{ critical_issues|length }})</h2>
-                {% for result, issue in critical_issues %}
-                <div class="url-section">
-                    <h3>URL: {{ result.url }}</h3>
-                    <div class="url">{{ result.url }}</div>
-                    <div style="margin-top: 10px;">
-                        <span class="score-badge">Score: {{ result.accessibility_score }}/100</span>
-                    </div>
+
+        <div class=\"section\">
+            <h2>Results by URL</h2>
+            {% for result in scan_results %}
+            <div class=\"site card\">
+                <div class=\"site-head\">
+                    <div class=\"url\">{{ result.url }}</div>
+                    <div class=\"badge\">Score: {{ result.accessibility_score }}/100</div>
                 </div>
-                <div class="issue-card">
-                    <div class="issue-header">
-                        <span class="issue-severity severity-critical">Critical</span>
-                        <span>{{ issue.issue_type.value.replace('_', ' ').title() }}</span>
+
+                {% if result.status != 'completed' %}
+                    <div style=\"padding:14px\">Scan failed: {{ result.error_message }}</div>
+                {% else %}
+                <details data-section="crit">
+                    <summary>🚨 Critical ({{ result.issues|selectattr('severity.value','equalto','critical')|list|length }})</summary>
+                    <div class="toolbar">
+                        <span class="pill filter-sev" data-sev="critical">Critical</span>
+                        <span class="pill filter-sev" data-sev="moderate">Moderate</span>
+                        <span class="pill filter-sev" data-sev="low">Low</span>
+                        <span class="pill active" data-filter="all">Show All</span>
+                        <span style="flex:1"></span>
+                        <button class="btn act-copy-csv">Copy CSV</button>
+                        <button class="btn act-download-json">Download JSON</button>
                     </div>
-                    <div class="issue-content">
-                        <div class="issue-description">{{ issue.description }}</div>
-                        <div class="issue-details">
-                            <strong>Element:</strong> {{ issue.element }}<br>
-                            <strong>Context:</strong> {{ issue.context }}<br>
-                            {% if issue.line_number %}<strong>Line:</strong> {{ issue.line_number }}<br>{% endif %}
-                            {% if issue.wcag_criteria %}<strong>WCAG Criteria:</strong> {{ issue.wcag_criteria|join(', ') }}{% endif %}
-                        </div>
-                        <div class="issue-fix">
-                            <strong>Suggested Fix:</strong><br>
-                            {{ issue.suggested_fix }}
-                        </div>
+                    <div style=\"padding: 0 12px 12px 12px\">
+                        {% set crit = result.issues|selectattr('severity.value','equalto','critical')|list %}
+                        {% if crit %}
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style=\"width:120px\">Type</th>
+                                    <th>Description</th>
+                                    <th style=\"width:22%\">Element</th>
+                                    <th style=\"width:16%\">WCAG</th>
+                                    <th style=\"width:26%\">Suggested Fix</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for issue in crit %}
+                                <tr data-sev="critical" data-type="{{ issue.issue_type.value }}" data-wcag="{{ issue.wcag_criteria|join(' ') }}">
+                                    <td><span class=\"sev critical\">Critical</span> {{ issue.issue_type.value.replace('_',' ').title() }}</td>
+                                    <td>{{ issue.description }}</td>
+                                    <td><div class=\"muted\">{{ issue.element }}</div></td>
+                                    <td>{{ issue.wcag_criteria|join(', ') }}</td>
+                                    <td>
+                                        <div class=\"fix\">{{ issue.suggested_fix }}</div>
+                                        {% if issue.additional_info and issue.additional_info.screenshot %}
+                                            <div style=\"margin-top:6px\"><img src=\"{{ issue.additional_info.screenshot }}\" alt=\"screenshot\" style=\"max-width:200px;border:1px solid #e2e8f0;border-radius:6px\"></div>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                        <div class=\"muted\" style=\"padding:10px\">No critical issues.</div>
+                        {% endif %}
                     </div>
-                </div>
-                {% endfor %}
+                </details>
+
+                <details data-section="mod">
+                    <summary>⚠️ Moderate ({{ result.issues|selectattr('severity.value','equalto','moderate')|list|length }})</summary>
+                    <div class="toolbar">
+                        <span class="pill filter-sev" data-sev="critical">Critical</span>
+                        <span class="pill filter-sev" data-sev="moderate">Moderate</span>
+                        <span class="pill filter-sev" data-sev="low">Low</span>
+                        <span class="pill active" data-filter="all">Show All</span>
+                        <span style="flex:1"></span>
+                        <button class="btn act-copy-csv">Copy CSV</button>
+                        <button class="btn act-download-json">Download JSON</button>
+                    </div>
+                    <div style=\"padding: 0 12px 12px 12px\">
+                        {% set mod = result.issues|selectattr('severity.value','equalto','moderate')|list %}
+                        {% if mod %}
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style=\"width:120px\">Type</th>
+                                    <th>Description</th>
+                                    <th style=\"width:22%\">Element</th>
+                                    <th style=\"width:16%\">WCAG</th>
+                                    <th style=\"width:26%\">Suggested Fix</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for issue in mod %}
+                                <tr data-sev="moderate" data-type="{{ issue.issue_type.value }}" data-wcag="{{ issue.wcag_criteria|join(' ') }}">
+                                    <td><span class=\"sev moderate\">Moderate</span> {{ issue.issue_type.value.replace('_',' ').title() }}</td>
+                                    <td>{{ issue.description }}</td>
+                                    <td><div class=\"muted\">{{ issue.element }}</div></td>
+                                    <td>{{ issue.wcag_criteria|join(', ') }}</td>
+                                    <td>
+                                        <div class=\"fix\">{{ issue.suggested_fix }}</div>
+                                        {% if issue.additional_info and issue.additional_info.screenshot %}
+                                            <div style=\"margin-top:6px\"><img src=\"{{ issue.additional_info.screenshot }}\" alt=\"screenshot\" style=\"max-width:200px;border:1px solid #e2e8f0;border-radius:6px\"></div>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                        <div class=\"muted\" style=\"padding:10px\">No moderate issues.</div>
+                        {% endif %}
+                    </div>
+                </details>
+
+                <details data-section="low">
+                    <summary>ℹ️ Low ({{ result.issues|selectattr('severity.value','equalto','low')|list|length }})</summary>
+                    <div class="toolbar">
+                        <span class="pill filter-sev" data-sev="critical">Critical</span>
+                        <span class="pill filter-sev" data-sev="moderate">Moderate</span>
+                        <span class="pill filter-sev" data-sev="low">Low</span>
+                        <span class="pill active" data-filter="all">Show All</span>
+                        <span style="flex:1"></span>
+                        <button class="btn act-copy-csv">Copy CSV</button>
+                        <button class="btn act-download-json">Download JSON</button>
+                    </div>
+                    <div style=\"padding: 0 12px 12px 12px\">
+                        {% set low = result.issues|selectattr('severity.value','equalto','low')|list %}
+                        {% if low %}
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style=\"width:120px\">Type</th>
+                                    <th>Description</th>
+                                    <th style=\"width:22%\">Element</th>
+                                    <th style=\"width:16%\">WCAG</th>
+                                    <th style=\"width:26%\">Suggested Fix</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for issue in low %}
+                                <tr data-sev="low" data-type="{{ issue.issue_type.value }}" data-wcag="{{ issue.wcag_criteria|join(' ') }}">
+                                    <td><span class=\"sev low\">Low</span> {{ issue.issue_type.value.replace('_',' ').title() }}</td>
+                                    <td>{{ issue.description }}</td>
+                                    <td><div class=\"muted\">{{ issue.element }}</div></td>
+                                    <td>{{ issue.wcag_criteria|join(', ') }}</td>
+                                    <td>
+                                        <div class=\"fix\">{{ issue.suggested_fix }}</div>
+                                        {% if issue.additional_info and issue.additional_info.screenshot %}
+                                            <div style=\"margin-top:6px\"><img src=\"{{ issue.additional_info.screenshot }}\" alt=\"screenshot\" style=\"max-width:200px;border:1px solid #e2e8f0;border-radius:6px\"></div>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                        <div class=\"muted\" style=\"padding:10px\">No low priority issues.</div>
+                        {% endif %}
+                    </div>
+                </details>
+                {% endif %}
             </div>
-            {% endif %}
-            
-            {% if moderate_issues %}
-            <div class="section">
-                <h2>⚠️ Moderate Issues ({{ moderate_issues|length }})</h2>
-                {% for result, issue in moderate_issues %}
-                <div class="url-section">
-                    <h3>URL: {{ result.url }}</h3>
-                    <div class="url">{{ result.url }}</div>
-                    <div style="margin-top: 10px;">
-                        <span class="score-badge">Score: {{ result.accessibility_score }}/100</span>
-                    </div>
-                </div>
-                <div class="issue-card">
-                    <div class="issue-header">
-                        <span class="issue-severity severity-moderate">Moderate</span>
-                        <span>{{ issue.issue_type.value.replace('_', ' ').title() }}</span>
-                    </div>
-                    <div class="issue-content">
-                        <div class="issue-description">{{ issue.description }}</div>
-                        <div class="issue-details">
-                            <strong>Element:</strong> {{ issue.element }}<br>
-                            <strong>Context:</strong> {{ issue.context }}<br>
-                            {% if issue.line_number %}<strong>Line:</strong> {{ issue.line_number }}<br>{% endif %}
-                            {% if issue.wcag_criteria %}<strong>WCAG Criteria:</strong> {{ issue.wcag_criteria|join(', ') }}{% endif %}
-                        </div>
-                        <div class="issue-fix">
-                            <strong>Suggested Fix:</strong><br>
-                            {{ issue.suggested_fix }}
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            {% endif %}
-            
-            {% if low_issues %}
-            <div class="section">
-                <h2>ℹ️ Low Priority Issues ({{ low_issues|length }})</h2>
-                {% for result, issue in low_issues %}
-                <div class="url-section">
-                    <h3>URL: {{ result.url }}</h3>
-                    <div class="url">{{ result.url }}</div>
-                    <div style="margin-top: 10px;">
-                        <span class="score-badge">Score: {{ result.accessibility_score }}/100</span>
-                    </div>
-                </div>
-                <div class="issue-card">
-                    <div class="issue-header">
-                        <span class="issue-severity severity-low">Low</span>
-                        <span>{{ issue.issue_type.value.replace('_', ' ').title() }}</span>
-                    </div>
-                    <div class="issue-content">
-                        <div class="issue-description">{{ issue.description }}</div>
-                        <div class="issue-details">
-                            <strong>Element:</strong> {{ issue.element }}<br>
-                            <strong>Context:</strong> {{ issue.context }}<br>
-                            {% if issue.line_number %}<strong>Line:</strong> {{ issue.line_number }}<br>{% endif %}
-                            {% if issue.wcag_criteria %}<strong>WCAG Criteria:</strong> {{ issue.wcag_criteria|join(', ') }}{% endif %}
-                        </div>
-                        <div class="issue-fix">
-                            <strong>Suggested Fix:</strong><br>
-                            {{ issue.suggested_fix }}
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            {% endif %}
-            
-            {% if summary.total_issues == 0 %}
-            <div class="section">
-                <h2>✅ No Issues Found</h2>
-                <div class="no-issues">
-                    <p>🎉 Congratulations! No accessibility issues were found in the scanned URLs.</p>
-                    <p>Your website appears to be following accessibility best practices.</p>
-                </div>
-            </div>
-            {% endif %}
+            {% endfor %}
         </div>
-        
-        <div class="footer">
-            <p>Generated by Pythonic Accessibility Toolkit</p>
-            <p>For more information about web accessibility, visit <a href="https://www.w3.org/WAI/" target="_blank">W3C Web Accessibility Initiative</a></p>
-        </div>
+
+        <div class=\"footer\">Generated by Pythonic Accessibility Toolkit • {{ generated_at }}</div>
     </div>
+    <script>
+      (function(){
+        // Remember details open/closed state
+        document.querySelectorAll('.site').forEach(function(site){
+          const url = site.querySelector('.url')?.textContent?.trim() || Math.random().toString(36);
+          site.querySelectorAll('details').forEach(function(d){
+            const key = 'a11y_rep_'+url+'_'+d.getAttribute('data-section');
+            const saved = localStorage.getItem(key);
+            if(saved !== null){ d.open = saved === '1'; }
+            d.addEventListener('toggle', function(){ localStorage.setItem(key, d.open ? '1':'0'); });
+          });
+        });
+
+        // Filters by severity pills within each details
+        document.querySelectorAll('.site details').forEach(function(block){
+          const table = block.querySelector('table'); if(!table) return;
+          const rows = Array.from(table.querySelectorAll('tbody tr'));
+          const pillAll = block.querySelector('[data-filter="all"]');
+          block.querySelectorAll('.filter-sev').forEach(function(pill){
+            pill.addEventListener('click', function(){
+              block.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+              pill.classList.add('active');
+              const sev = pill.getAttribute('data-sev');
+              rows.forEach(function(r){ r.style.display = (r.getAttribute('data-sev')===sev)?'':'none'; });
+            });
+          });
+          if(pillAll){ pillAll.addEventListener('click', function(){
+            block.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+            pillAll.classList.add('active');
+            rows.forEach(r=>r.style.display='');
+          });}
+        });
+
+        function tableToData(table){
+          const data = [];
+          table.querySelectorAll('tbody tr').forEach(function(tr){
+            const tds = tr.querySelectorAll('td');
+            data.push({
+              severity: tr.getAttribute('data-sev'),
+              type: tds[0]?.innerText.trim(),
+              description: tds[1]?.innerText.trim(),
+              element: tds[2]?.innerText.trim(),
+              wcag: tds[3]?.innerText.trim(),
+              fix: tds[4]?.innerText.trim(),
+            });
+          });
+          return data;
+        }
+
+        function dataToCSV(arr){
+          if(!arr.length) return '';
+          const cols = Object.keys(arr[0]);
+          const esc = s => '"'+String(s).replace(/"/g,'""')+'"';
+          const lines = [cols.join(',')].concat(arr.map(o=>cols.map(c=>esc(o[c]||'')).join(',')));
+          return lines.join('\n');
+        }
+
+        function download(filename, content, mime){
+          const blob = new Blob([content], {type: mime});
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url; a.download = filename; document.body.appendChild(a); a.click();
+          setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 0);
+        }
+
+        // Actions: Copy CSV and Download JSON
+        document.querySelectorAll('.site details').forEach(function(block){
+          const table = block.querySelector('table'); if(!table) return;
+          const data = () => tableToData(table);
+          const btnCSV = block.querySelector('.act-copy-csv');
+          const btnJSON = block.querySelector('.act-download-json');
+          if(btnCSV){ btnCSV.addEventListener('click', function(){
+            const csv = dataToCSV(data());
+            navigator.clipboard.writeText(csv).then(()=>{ btnCSV.textContent='Copied!'; setTimeout(()=>btnCSV.textContent='Copy CSV',1200); });
+          });}
+          if(btnJSON){ btnJSON.addEventListener('click', function(){
+            const json = JSON.stringify(data(), null, 2);
+            download('issues.json', json, 'application/json');
+          });}
+        });
+      })();
+    </script>
 </body>
 </html>
         """
-        
         return Template(template_content)
     
     def generate_summary_report(self, scan_results: List[ScanResult], 
