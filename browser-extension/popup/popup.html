@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Assistant</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <img src="../icons/icon32.png" alt="Accessibility Assistant" class="logo-icon">
+                <h1>Accessibility Assistant</h1>
+            </div>
+            <button class="scan-btn" id="scanBtn">
+                <span class="scan-icon">🔍</span>
+                Scan Page
+            </button>
+        </header>
+
+        <!-- Loading State -->
+        <div class="loading" id="loadingState" style="display: none;">
+            <div class="spinner"></div>
+            <p>Scanning page for accessibility issues...</p>
+        </div>
+
+        <!-- Scan Results -->
+        <div class="results" id="resultsContainer" style="display: none;">
+            <div class="results-header">
+                <h2>Accessibility Issues Found</h2>
+                <div class="summary-stats">
+                    <span class="stat critical" id="criticalCount">0</span>
+                    <span class="stat moderate" id="moderateCount">0</span>
+                    <span class="stat low" id="lowCount">0</span>
+                </div>
+            </div>
+
+            <div class="issues-list" id="issuesList">
+                <!-- Issues will be populated here -->
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-primary" id="applyFixesBtn">
+                    <span class="icon">✅</span>
+                    Apply Selected Fixes
+                </button>
+                <button class="btn btn-secondary" id="revertFixesBtn" style="display: none;">
+                    <span class="icon">↩️</span>
+                    Revert Changes
+                </button>
+                <button class="btn btn-outline" id="exportReportBtn">
+                    <span class="icon">📄</span>
+                    Export Report
+                </button>
+            </div>
+        </div>
+
+        <!-- No Issues State -->
+        <div class="no-issues" id="noIssuesState" style="display: none;">
+            <div class="success-icon">🎉</div>
+            <h3>Great News!</h3>
+            <p>No accessibility issues were found on this page.</p>
+            <p>Your browsing experience should be smooth and accessible!</p>
+        </div>
+
+        <!-- Error State -->
+        <div class="error" id="errorState" style="display: none;">
+            <div class="error-icon">❌</div>
+            <h3>Scan Failed</h3>
+            <p id="errorMessage">Unable to scan the current page.</p>
+            <button class="btn btn-primary" id="retryBtn">Try Again</button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <a href="../options/options.html" target="_blank" class="settings-link">
+                <span class="icon">⚙️</span>
+                Settings
+            </a>
+            <span class="version">v1.0.0</span>
+        </footer>
+    </div>
+
+    <!-- Issue Template (Hidden) -->
+    <template id="issueTemplate">
+        <div class="issue-item" data-issue-id="">
+            <div class="issue-header">
+                <div class="issue-severity">
+                    <span class="severity-badge"></span>
+                </div>
+                <div class="issue-type"></div>
+                <label class="fix-checkbox">
+                    <input type="checkbox" class="fix-toggle">
+                    <span class="checkmark"></span>
+                    Apply Fix
+                </label>
+            </div>
+            <div class="issue-description"></div>
+            <div class="issue-details">
+                <div class="issue-element">
+                    <strong>Element:</strong> <span class="element-text"></span>
+                </div>
+                <div class="issue-context">
+                    <strong>Context:</strong> <span class="context-text"></span>
+                </div>
+            </div>
+            <div class="issue-fix">
+                <strong>Suggested Fix:</strong>
+                <p class="fix-text"></p>
+            </div>
+        </div>
+    </template>
+
+    <script src="popup.js"></script>
+</body>
+</html>

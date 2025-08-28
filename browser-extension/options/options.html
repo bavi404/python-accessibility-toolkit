@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Assistant - Options</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <img src="../icons/icon48.png" alt="Accessibility Assistant" class="logo-icon">
+                <h1>Accessibility Assistant</h1>
+            </div>
+            <p class="subtitle">Customize your accessibility experience</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- General Settings -->
+            <section class="settings-section">
+                <h2>General Settings</h2>
+                
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="enableExtension" class="setting-checkbox">
+                        <span class="checkmark"></span>
+                        Enable Accessibility Assistant
+                    </label>
+                    <p class="setting-description">
+                        Turn the extension on or off completely
+                    </p>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="autoScan" class="setting-checkbox">
+                        <span class="checkmark"></span>
+                        Auto-scan pages
+                    </label>
+                    <p class="setting-description">
+                        Automatically scan pages for accessibility issues when they load
+                    </p>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="notifications" class="setting-checkbox">
+                        <span class="checkmark"></span>
+                        Show notifications
+                    </label>
+                    <p class="setting-description">
+                        Display notifications when accessibility issues are found
+                    </p>
+                </div>
+            </section>
+
+            <!-- Scanning Preferences -->
+            <section class="settings-section">
+                <h2>Scanning Preferences</h2>
+                
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="scanImages" class="setting-checkbox" checked>
+                        <span class="checkmark"></span>
+                        Scan images for alt text
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="scanForms" class="setting-checkbox" checked>
+                        <span class="checkmark"></span>
+                        Scan forms for labels
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="scanHeadings" class="setting-checkbox" checked>
+                        <span class="checkmark"></span>
+                        Scan heading structure
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="scanLinks" class="setting-checkbox" checked>
+                        <span class="checkmark"></span>
+                        Scan link descriptions
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="scanARIA" class="setting-checkbox" checked>
+                        <span class="checkmark"></span>
+                        Scan ARIA attributes
+                    </label>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="scanContrast" class="setting-checkbox" checked>
+                        <span class="checkmark"></span>
+                        Scan color contrast
+                    </label>
+                </div>
+            </section>
+
+            <!-- Auto-Fix Preferences -->
+            <section class="settings-section">
+                <h2>Auto-Fix Preferences</h2>
+                
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="autoFixAltText" class="setting-checkbox">
+                        <span class="checkmark"></span>
+                        Auto-fix missing alt text
+                    </label>
+                    <p class="setting-description">
+                        Automatically add temporary alt text to images
+                    </p>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="autoFixContrast" class="setting-checkbox">
+                        <span class="checkmark"></span>
+                        Auto-fix color contrast
+                    </label>
+                    <p class="setting-description">
+                        Automatically apply high contrast colors
+                    </p>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="autoFixLabels" class="setting-checkbox">
+                        <span class="checkmark"></span>
+                        Auto-fix form labels
+                    </label>
+                    <p class="setting-description">
+                        Automatically add temporary labels to form elements
+                    </p>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="autoFixARIA" class="setting-checkbox">
+                        <span class="checkmark"></span>
+                        Auto-fix invalid ARIA
+                    </label>
+                    <p class="setting-description">
+                        Automatically remove invalid ARIA attributes
+                    </p>
+                </div>
+            </section>
+
+            <!-- Visual Preferences -->
+            <section class="settings-section">
+                <h2>Visual Preferences</h2>
+                
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="showIssueIndicators" class="setting-checkbox" checked>
+                        <span class="checkmark"></span>
+                        Show issue indicators
+                    </label>
+                    <p class="setting-description">
+                        Highlight accessibility issues on the page
+                    </p>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="showFixIndicators" class="setting-checkbox" checked>
+                        <span class="checkmark"></span>
+                        Show fix indicators
+                    </label>
+                    <p class="setting-description">
+                        Show which elements have been fixed
+                    </p>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="highContrastMode" class="setting-checkbox">
+                        <span class="checkmark"></span>
+                        Enable high contrast mode
+                    </p>
+                    <p class="setting-description">
+                        Apply high contrast colors to all pages
+                    </p>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="largeFontMode" class="setting-checkbox">
+                        <span class="checkmark"></span>
+                        Enable large font mode
+                    </label>
+                    <p class="setting-description">
+                        Increase font sizes for better readability
+                    </p>
+                </div>
+            </section>
+
+            <!-- Advanced Settings -->
+            <section class="settings-section">
+                <h2>Advanced Settings</h2>
+                
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="debugMode" class="setting-checkbox">
+                        <span class="checkmark"></span>
+                        Enable debug mode
+                    </label>
+                    <p class="setting-description">
+                        Show detailed logging in browser console
+                    </p>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="performanceMode" class="setting-checkbox">
+                        <span class="checkmark"></span>
+                        Performance mode
+                    </label>
+                    <p class="setting-description">
+                        Optimize for faster scanning (may miss some issues)
+                    </p>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="strictMode" class="setting-checkbox">
+                        <span class="checkmark"></span>
+                        Strict mode
+                    </label>
+                    <p class="setting-description">
+                        Use stricter accessibility guidelines
+                    </p>
+                </div>
+            </section>
+
+            <!-- Data Management -->
+            <section class="settings-section">
+                <h2>Data Management</h2>
+                
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="saveScanHistory" class="setting-checkbox" checked>
+                        <span class="checkmark"></span>
+                        Save scan history
+                    </label>
+                    <p class="setting-description">
+                        Store accessibility scan results for review
+                    </p>
+                </div>
+
+                <div class="setting-item">
+                    <label class="setting-label">
+                        <input type="checkbox" id="syncSettings" class="setting-checkbox" checked>
+                        <span class="checkmark"></span>
+                        Sync settings across devices
+                    </label>
+                    <p class="setting-description">
+                        Use Chrome sync to share settings
+                    </p>
+                </div>
+
+                <div class="setting-item">
+                    <button class="btn btn-outline" id="exportSettingsBtn">
+                        <span class="icon">📤</span>
+                        Export Settings
+                    </button>
+                    <button class="btn btn-outline" id="importSettingsBtn">
+                        <span class="icon">📥</span>
+                        Import Settings
+                    </button>
+                </div>
+
+                <div class="setting-item">
+                    <button class="btn btn-danger" id="resetSettingsBtn">
+                        <span class="icon">🔄</span>
+                        Reset to Defaults
+                    </button>
+                    <button class="btn btn-danger" id="clearDataBtn">
+                        <span class="icon">🗑️</span>
+                        Clear All Data
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="actions">
+                <button class="btn btn-primary" id="saveSettingsBtn">
+                    <span class="icon">💾</span>
+                    Save Settings
+                </button>
+                <button class="btn btn-secondary" id="cancelBtn">
+                    <span class="icon">❌</span>
+                    Cancel
+                </button>
+            </div>
+            
+            <div class="info">
+                <p>Settings are automatically saved to your browser</p>
+                <p class="version">Accessibility Assistant v1.0.0</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Hidden file input for import -->
+    <input type="file" id="importFileInput" accept=".json" style="display: none;">
+
+    <script src="options.js"></script>
+</body>
+</html>

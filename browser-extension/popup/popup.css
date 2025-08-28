@@ -1,0 +1,463 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    background: #f8f9fa;
+}
+
+.container {
+    width: 400px;
+    min-height: 500px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+/* Header Styles */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+}
+
+.logo h1 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.scan-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.scan-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.scan-icon {
+    font-size: 14px;
+}
+
+/* Loading State */
+.loading {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e9ecef;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading p {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+/* Results Container */
+.results {
+    padding: 20px;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.results-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.summary-stats {
+    display: flex;
+    gap: 8px;
+}
+
+.stat {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+}
+
+.stat.critical {
+    background: #dc3545;
+}
+
+.stat.moderate {
+    background: #fd7e14;
+}
+
+.stat.low {
+    background: #28a745;
+}
+
+/* Issues List */
+.issues-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.issue-item {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+}
+
+.issue-item:hover {
+    border-color: #667eea;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+}
+
+.issue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.issue-severity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.severity-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: white;
+}
+
+.severity-badge.critical {
+    background: #dc3545;
+}
+
+.severity-badge.moderate {
+    background: #fd7e14;
+}
+
+.severity-badge.low {
+    background: #28a745;
+}
+
+.issue-type {
+    font-size: 12px;
+    color: #6c757d;
+    text-transform: capitalize;
+}
+
+.fix-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #495057;
+}
+
+.fix-toggle {
+    display: none;
+}
+
+.checkmark {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #dee2e6;
+    border-radius: 3px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.fix-toggle:checked + .checkmark {
+    background: #667eea;
+    border-color: #667eea;
+}
+
+.fix-toggle:checked + .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: -2px;
+    left: 2px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.issue-description {
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.issue-details {
+    background: white;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    font-size: 12px;
+}
+
+.issue-details > div {
+    margin-bottom: 6px;
+}
+
+.issue-details > div:last-child {
+    margin-bottom: 0;
+}
+
+.issue-fix {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.issue-fix strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.fix-text {
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #5a6fd8;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #667eea;
+    border: 1px solid #667eea;
+}
+
+.btn-outline:hover {
+    background: #667eea;
+    color: white;
+}
+
+.icon {
+    font-size: 16px;
+}
+
+/* No Issues State */
+.no-issues {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.success-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.no-issues h3 {
+    color: #28a745;
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.no-issues p {
+    color: #6c757d;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Error State */
+.error {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.error-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.error h3 {
+    color: #dc3545;
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.error p {
+    color: #6c757d;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+/* Footer */
+.footer {
+    background: #f8f9fa;
+    padding: 15px 20px;
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.settings-link {
+    color: #6c757d;
+    text-decoration: none;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+}
+
+.settings-link:hover {
+    color: #667eea;
+}
+
+.version {
+    color: #adb5bd;
+    font-size: 11px;
+}
+
+/* Scrollbar Styling */
+.issues-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.issues-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.issues-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.issues-list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Responsive Design */
+@media (max-width: 450px) {
+    .container {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+    }
+    
+    .header {
+        padding: 15px;
+    }
+    
+    .logo h1 {
+        font-size: 16px;
+    }
+    
+    .scan-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}

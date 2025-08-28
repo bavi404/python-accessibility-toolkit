@@ -1,0 +1,430 @@
+/* Options Page Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    background: #f8f9fa;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    min-height: 100vh;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.logo-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+}
+
+.logo h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.subtitle {
+    font-size: 16px;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* Main Content */
+.main-content {
+    padding: 30px;
+}
+
+.settings-section {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.settings-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.settings-section h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #667eea;
+}
+
+.setting-item {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    transition: all 0.2s ease;
+}
+
+.setting-item:hover {
+    border-color: #667eea;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+}
+
+.setting-item:last-child {
+    margin-bottom: 0;
+}
+
+.setting-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 8px;
+}
+
+.setting-checkbox {
+    display: none;
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #dee2e6;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.setting-checkbox:checked + .checkmark {
+    background: #667eea;
+    border-color: #667eea;
+}
+
+.setting-checkbox:checked + .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: -2px;
+    left: 3px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.setting-description {
+    color: #6c757d;
+    font-size: 13px;
+    margin-left: 32px;
+    line-height: 1.4;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #5a6fd8;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #667eea;
+    border: 1px solid #667eea;
+}
+
+.btn-outline:hover {
+    background: #667eea;
+    color: white;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+.icon {
+    font-size: 16px;
+}
+
+/* Footer */
+.footer {
+    background: #f8f9fa;
+    padding: 30px;
+    border-top: 1px solid #e9ecef;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.info {
+    text-align: center;
+    color: #6c757d;
+    font-size: 13px;
+}
+
+.info p {
+    margin-bottom: 5px;
+}
+
+.version {
+    font-weight: 500;
+    color: #495057;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        margin: 0;
+        box-shadow: none;
+    }
+    
+    .header {
+        padding: 30px 20px;
+    }
+    
+    .logo h1 {
+        font-size: 24px;
+    }
+    
+    .main-content {
+        padding: 20px;
+    }
+    
+    .settings-section {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+    }
+    
+    .settings-section h2 {
+        font-size: 18px;
+    }
+    
+    .setting-item {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .footer {
+        padding: 20px;
+    }
+    
+    .actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 20px 15px;
+    }
+    
+    .logo {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .logo h1 {
+        font-size: 20px;
+    }
+    
+    .main-content {
+        padding: 15px;
+    }
+    
+    .setting-item {
+        padding: 12px;
+    }
+    
+    .setting-description {
+        margin-left: 0;
+        margin-top: 8px;
+    }
+}
+
+/* Animation for settings changes */
+.setting-item.changed {
+    border-color: #28a745;
+    background: #d4edda;
+}
+
+.setting-item.changed .setting-label {
+    color: #155724;
+}
+
+/* Success/Error states */
+.setting-item.success {
+    border-color: #28a745;
+    background: #d4edda;
+}
+
+.setting-item.error {
+    border-color: #dc3545;
+    background: #f8d7da;
+}
+
+/* Loading state */
+.setting-item.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.setting-item.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #667eea;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Tooltip styles */
+.setting-item {
+    position: relative;
+}
+
+.setting-item .tooltip {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    z-index: 1000;
+}
+
+.setting-item .tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #333;
+}
+
+.setting-item:hover .tooltip {
+    opacity: 1;
+}
+
+/* Accessibility improvements */
+.setting-checkbox:focus + .checkmark {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+.btn:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .setting-item {
+        border-width: 2px;
+    }
+    
+    .btn {
+        border-width: 2px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .setting-item,
+    .btn {
+        transition: none;
+    }
+    
+    .setting-item.loading::after {
+        animation: none;
+    }
+}
