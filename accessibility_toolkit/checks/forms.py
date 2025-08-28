@@ -52,7 +52,17 @@ class FormAccessibilityCheck(BaseCheck):
         
         # Check input elements
         inputs = form.find_all("input")
+        seen = set()
         for input_elem in inputs:
+            sig = (
+                input_elem.name,
+                input_elem.get("type", "text"),
+                input_elem.get("id", ""),
+                input_elem.get("name", ""),
+            )
+            if sig in seen:
+                continue
+            seen.add(sig)
             input_issues = self._check_input_element(input_elem)
             issues.extend(input_issues)
         

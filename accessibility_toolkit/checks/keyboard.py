@@ -60,7 +60,19 @@ class KeyboardNavigationCheck(BaseCheck):
         # Find all interactive elements
         interactive_elements = self._find_interactive_elements(soup)
         
+        # De-duplicate similar elements by signature (tag, id, name, role)
+        seen = set()
         for element in interactive_elements:
+            sig = (
+                element.name,
+                element.get('id', ''),
+                element.get('name', ''),
+                element.get('role', ''),
+            )
+            if sig in seen:
+                continue
+            seen.add(sig)
+            
             # Check if element is focusable
             if not self._is_focusable(element):
                 issues.append(self._create_non_focusable_element_issue(element))
