@@ -1,0 +1,13 @@
+pyppeteer==1.0.2
+requests==2.31.0
+beautifulsoup4==4.12.2
+lxml==4.9.3
+colorama==0.4.6
+pyyaml==6.0.1
+jinja2==3.1.2
+click==8.1.7
+rich==13.7.0
+pytest==7.4.3
+pytest-asyncio==0.21.1
+aiohttp==3.9.1
+asyncio-throttle==1.0.2

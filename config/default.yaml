@@ -1,0 +1,71 @@
+# Default configuration for Pythonic Accessibility Toolkit
+
+# Scanner configuration
+timeout: 30
+max_retries: 3
+user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+viewport:
+  width: 1920
+  height: 1080
+wait_for: 2000  # milliseconds
+
+# Alt text checks
+alt_text:
+  ignore_decorative: true
+  require_descriptive: true
+
+# Heading hierarchy checks
+headings:
+  require_h1: true
+  max_heading_level: 6
+  check_skip_levels: true
+
+# Color contrast checks
+color_contrast:
+  min_contrast_ratio: 4.5
+  large_text_ratio: 3.0
+  large_text_size: 18
+  bold_large_text_size: 14
+
+# Form accessibility checks
+forms:
+  require_labels: true
+  require_placeholders: false
+  check_required_fields: true
+
+# Link accessibility checks
+links:
+  check_descriptive_text: true
+  check_empty_links: true
+  check_image_links: true
+  check_same_text_links: true
+
+# ARIA checks
+aria:
+  check_required_attributes: true
+  check_invalid_attributes: true
+  check_missing_attributes: true
+
+# Landmark checks
+landmarks:
+  require_main: true
+  require_navigation: true
+  check_duplicate_landmarks: true
+
+# Keyboard navigation checks
+keyboard:
+  check_focusable_elements: true
+  check_tab_order: true
+  check_skip_links: true
+
+# Report generation
+reports:
+  template_dir: "templates"
+  output_dir: "reports"
+  default_format: "html"
+
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: null  # Set to file path to enable file logging
