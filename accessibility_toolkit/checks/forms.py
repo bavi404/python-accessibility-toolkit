@@ -16,6 +16,7 @@ class FormAccessibilityCheck(BaseCheck):
         self.require_labels = config.get("require_labels", True)
         self.require_placeholders = config.get("require_placeholders", False)
         self.check_required_fields = config.get("check_required_fields", True)
+        self.check_error_handling = config.get("check_error_handling", True)
     
     def check(self, soup: BeautifulSoup, url: str) -> List[AccessibilityIssue]:
         """
@@ -42,6 +43,11 @@ class FormAccessibilityCheck(BaseCheck):
             # Check form structure
             structure_issues = self._check_form_structure(form)
             issues.extend(structure_issues)
+            
+            # Check error handling and validation
+            if self.check_error_handling:
+                error_issues = self._check_error_handling(form)
+                issues.extend(error_issues)
         
         self.log_check_complete(url, len(issues))
         return issues
@@ -172,6 +178,194 @@ class FormAccessibilityCheck(BaseCheck):
         
         return issues
     
+    def _check_error_handling(self, form) -> List[AccessibilityIssue]:
+        """Check form error handling and validation accessibility."""
+        issues = []
+        
+        # Check for form elements with validation errors
+        invalid_elements = form.find_all(attrs={"aria-invalid": "true"})
+        
+        for element in invalid_elements:
+            # Check if error message is properly associated
+            if not self._has_error_message_association(element):
+                issues.append(self._create_missing_error_association_issue(element))
+            
+            # Check if error message is descriptive
+            error_msg = self._get_error_message(element)
+            if error_msg and not self._is_descriptive_error(error_msg):
+                issues.append(self._create_non_descriptive_error_issue(element, error_msg))
+        
+        # Check for required fields without clear indication
+        required_fields = form.find_all(attrs={"required": True})
+        for field in required_fields:
+            if not self._has_clear_required_indication(field):
+                issues.append(self._create_missing_required_indication_issue(field))
+        
+        # Check for form submission errors without clear messaging
+        error_containers = form.find_all(class_=lambda x: x and any(word in x.lower() for word in ["error", "alert", "warning", "invalid"]))
+        for container in error_containers:
+            if not self._has_accessible_error_content(container):
+                issues.append(self._create_inaccessible_error_content_issue(container))
+        
+        return issues
+    
+    def _has_error_message_association(self, element) -> bool:
+        """Check if an element has proper error message association."""
+        # Check for aria-describedby pointing to error message
+        if element.get("aria-describedby"):
+            describedby_ids = element.get("aria-describedby").split()
+            for error_id in describedby_ids:
+                error_element = element.find_parent().find(id=error_id)
+                if error_element and self._is_error_message(error_element):
+                    return True
+        
+        # Check for aria-errormessage (newer standard)
+        if element.get("aria-errormessage"):
+            error_id = element.get("aria-errormessage")
+            error_element = element.find_parent().find(id=error_id)
+            if error_element and self._is_error_message(error_element):
+                return True
+        
+        # Check for nearby error message (heuristic)
+        if self._has_nearby_error_message(element):
+            return True
+        
+        return False
+    
+    def _is_error_message(self, element) -> bool:
+        """Check if an element appears to be an error message."""
+        # Check for error-related classes
+        classes = element.get("class", [])
+        if isinstance(classes, str):
+            classes = [classes]
+        
+        error_classes = ["error", "alert", "warning", "invalid", "danger", "text-danger"]
+        if any(error_class in " ".join(classes).lower() for error_class in error_classes):
+            return True
+        
+        # Check for error-related ARIA roles
+        if element.get("role") in ["alert", "alertdialog", "status"]:
+            return True
+        
+        # Check for error-related text content
+        text = element.get_text(strip=True).lower()
+        error_keywords = ["error", "invalid", "required", "missing", "incorrect", "failed"]
+        if any(keyword in text for keyword in error_keywords):
+            return True
+        
+        return False
+    
+    def _has_nearby_error_message(self, element) -> bool:
+        """Check if there's an error message near the form element."""
+        # Look for error messages in the same container or nearby
+        parent = element.parent
+        if parent:
+            # Check siblings for error messages
+            siblings = parent.find_all(recursive=False)
+            for sibling in siblings:
+                if self._is_error_message(sibling):
+                    return True
+            
+            # Check parent's siblings
+            grandparent = parent.parent
+            if grandparent:
+                parent_siblings = grandparent.find_all(recursive=False)
+                for sibling in parent_siblings:
+                    if self._is_error_message(sibling):
+                        return True
+        
+        return False
+    
+    def _get_error_message(self, element) -> str:
+        """Get the error message text for an element if available."""
+        # Try to get error message via aria-describedby
+        if element.get("aria-describedby"):
+            describedby_ids = element.get("aria-describedby").split()
+            for error_id in describedby_ids:
+                error_element = element.find_parent().find(id=error_id)
+                if error_element:
+                    return error_element.get_text(strip=True)
+        
+        # Try to get error message via aria-errormessage
+        if element.get("aria-errormessage"):
+            error_id = element.get("aria-errormessage")
+            error_element = element.find_parent().find(id=error_id)
+            if error_element:
+                return error_element.get_text(strip=True)
+        
+        return ""
+    
+    def _is_descriptive_error(self, error_text: str) -> bool:
+        """Check if an error message is descriptive and helpful."""
+        if not error_text:
+            return False
+        
+        # Check for generic error messages
+        generic_errors = [
+            "error", "invalid", "incorrect", "wrong", "failed", "not valid",
+            "please fix", "try again", "something went wrong"
+        ]
+        
+        error_lower = error_text.lower()
+        if any(generic in error_lower for generic in generic_errors):
+            # If it's generic, check if it provides additional context
+            if len(error_text) < 20:  # Too short to be helpful
+                return False
+        
+        return True
+    
+    def _has_clear_required_indication(self, element) -> bool:
+        """Check if a required field has clear indication."""
+        # Check for visual required indicator
+        label = self._get_associated_label(element)
+        if label:
+            label_text = label.get_text(strip=True)
+            if "*" in label_text or "required" in label_text.lower():
+                return True
+        
+        # Check for aria-required
+        if element.get("aria-required") == "true":
+            return True
+        
+        # Check for required attribute
+        if element.get("required"):
+            return True
+        
+        return False
+    
+    def _has_accessible_error_content(self, container) -> bool:
+        """Check if error container has accessible content."""
+        # Check for proper ARIA role
+        if container.get("role") in ["alert", "status"]:
+            return True
+        
+        # Check for descriptive text content
+        text_content = container.get_text(strip=True)
+        if text_content and len(text_content) > 10:
+            return True
+        
+        # Check for aria-live attribute
+        if container.get("aria-live"):
+            return True
+        
+        return False
+    
+    def _get_associated_label(self, element) -> BeautifulSoup:
+        """Get the label associated with a form element."""
+        element_id = element.get("id")
+        if element_id:
+            # Find label with matching for attribute
+            label = element.find_parent().find("label", attrs={"for": element_id})
+            if label:
+                return label
+        
+        # Check for wrapped label
+        parent = element.parent
+        if parent and parent.name == "label":
+            return parent
+        
+        return None
+    
     def _has_proper_label(self, element) -> bool:
         """Check if an element has a proper label."""
         # Check for explicit label association
@@ -292,6 +486,95 @@ class FormAccessibilityCheck(BaseCheck):
                 "This ensures screen readers announce the error when the field is focused."
             ),
             wcag_criteria=["3.3.1"],
+            additional_info=element_info
+        )
+    
+    def _create_missing_error_association_issue(self, element) -> AccessibilityIssue:
+        """Create an issue for missing error message association."""
+        element_info = self.get_element_info(element)
+        context = self.get_parent_context(element)
+        
+        return self.create_issue(
+            issue_type=IssueType.INACCESSIBLE_FORMS,
+            severity=SeverityLevel.MODERATE,
+            description=f"Form element with validation error missing error message association: {element.name}",
+            element=f"<{element.name} {self._get_element_attributes(element)}>",
+            context=context,
+            line_number=self.get_line_number(element),
+            column_number=self.get_column_number(element),
+            suggested_fix=(
+                "Associate the error message with this field using aria-describedby or aria-errormessage. "
+                "This ensures screen readers announce the error when the field is focused."
+            ),
+            wcag_criteria=["3.3.1", "3.3.3"],
+            additional_info=element_info
+        )
+    
+    def _create_non_descriptive_error_issue(self, element, error_text: str) -> AccessibilityIssue:
+        """Create an issue for non-descriptive error messages."""
+        element_info = self.get_element_info(element)
+        context = self.get_parent_context(element)
+        
+        return self.create_issue(
+            issue_type=IssueType.INACCESSIBLE_FORMS,
+            severity=SeverityLevel.LOW,
+            description=f"Form element has non-descriptive error message: '{error_text}'",
+            element=f"<{element.name} {self._get_element_attributes(element)}>",
+            context=context,
+            line_number=self.get_line_number(element),
+            column_number=self.get_column_number(element),
+            suggested_fix=(
+                "Provide a specific, actionable error message that explains what went wrong "
+                "and how to fix it. Avoid generic messages like 'Error' or 'Invalid'."
+            ),
+            wcag_criteria=["3.3.1"],
+            additional_info=element_info
+        )
+    
+    def _create_missing_required_indication_issue(self, element) -> AccessibilityIssue:
+        """Create an issue for missing required field indication."""
+        element_info = self.get_element_info(element)
+        context = self.get_parent_context(element)
+        
+        return self.create_issue(
+            issue_type=IssueType.INACCESSIBLE_FORMS,
+            severity=SeverityLevel.MODERATE,
+            description=f"Required form element missing clear indication: {element.name}",
+            element=f"<{element.name} {self._get_element_attributes(element)}>",
+            context=context,
+            line_number=self.get_line_number(element),
+            column_number=self.get_column_number(element),
+            suggested_fix=(
+                "Clearly indicate this field is required by: "
+                "1. Adding an asterisk (*) to the label, "
+                "2. Including 'required' in the label text, or "
+                "3. Adding aria-required='true' attribute."
+            ),
+            wcag_criteria=["3.3.2"],
+            additional_info=element_info
+        )
+    
+    def _create_inaccessible_error_content_issue(self, container) -> AccessibilityIssue:
+        """Create an issue for inaccessible error content."""
+        element_info = self.get_element_info(container)
+        context = self.get_parent_context(container)
+        
+        return self.create_issue(
+            issue_type=IssueType.INACCESSIBLE_FORMS,
+            severity=SeverityLevel.MODERATE,
+            description="Error container missing accessible content or proper ARIA attributes",
+            element=f"<{container.name}>",
+            context=context,
+            line_number=self.get_line_number(container),
+            column_number=self.get_column_number(container),
+            suggested_fix=(
+                "Make error content accessible by: "
+                "1. Adding role='alert' for dynamic errors, "
+                "2. Including descriptive text content, "
+                "3. Using aria-live for live regions, or "
+                "4. Ensuring proper focus management."
+            ),
+            wcag_criteria=["3.3.1", "4.1.2"],
             additional_info=element_info
         )
     
