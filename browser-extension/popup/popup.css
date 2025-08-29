@@ -10,16 +10,19 @@ body {
     font-size: 14px;
     line-height: 1.5;
     color: #333;
-    background: #f8f9fa;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    transition: all 0.3s ease;
 }
 
 .container {
     width: 400px;
     min-height: 500px;
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
     overflow: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
 /* Header Styles */
@@ -30,24 +33,51 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
 }
 
 .logo {
     display: flex;
     align-items: center;
     gap: 12px;
+    position: relative;
+    z-index: 1;
 }
 
 .logo-icon {
     width: 32px;
     height: 32px;
     border-radius: 6px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover .logo-icon {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .logo h1 {
     font-size: 18px;
     font-weight: 600;
     margin: 0;
+    position: relative;
+    z-index: 1;
 }
 
 .scan-btn {
@@ -55,19 +85,23 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
     padding: 8px 16px;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 13px;
     font-weight: 500;
     display: flex;
     align-items: center;
     gap: 6px;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(10px);
 }
 
 .scan-btn:hover {
     background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-1px);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .scan-icon {
@@ -126,12 +160,32 @@ body {
     color: #495057;
     font-size: 12px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.chip::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+.chip:hover::before {
+    left: 100%;
 }
 
 .chip.active {
     background: #667eea;
     border-color: #667eea;
     color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
 }
 
 .search input {
@@ -194,12 +248,31 @@ body {
     border-radius: 8px;
     padding: 16px;
     margin-bottom: 12px;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.issue-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #667eea;
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.issue-item:hover::before {
+    transform: scaleY(1);
 }
 
 .issue-item:hover {
     border-color: #667eea;
-    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.15);
+    transform: translateY(-2px);
 }
 
 .issue-header {
@@ -222,18 +295,55 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     color: white;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.severity-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.severity-badge:hover::before {
+    left: 100%;
 }
 
 .severity-badge.critical {
     background: #dc3545;
 }
 
+.severity-badge.critical:hover {
+    background: #c82333;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.4);
+}
+
 .severity-badge.moderate {
     background: #fd7e14;
 }
 
+.severity-badge.moderate:hover {
+    background: #e8690b;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(253, 126, 20, 0.4);
+}
+
 .severity-badge.low {
     background: #28a745;
+}
+
+.severity-badge.low:hover {
+    background: #218838;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.4);
 }
 
 .issue-type {
@@ -331,7 +441,7 @@ body {
 .btn {
     padding: 12px 20px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
@@ -339,13 +449,33 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.btn:hover::before {
+    width: 200%;
+    height: 200%;
 }
 
 .btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary {

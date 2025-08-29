@@ -215,12 +215,16 @@ class ReportGenerator:
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; background: #f6f7fb; color: #2d3748; }
         .wrap { max-width: 1200px; margin: 0 auto; padding: 24px; }
-        .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-        .head { background: linear-gradient(135deg,#5a67d8,#805ad5); color: #fff; padding: 28px; border-radius: 10px; }
-        .head h1 { margin: 0; font-weight: 500; }
-        .sub { opacity:.9; margin-top:6px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 12px; margin-top: 16px; }
-        .kpi { background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:14px; text-align:center; }
+        .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: all 0.3s ease; }
+        .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); transform: translateY(-1px); }
+        .head { background: linear-gradient(135deg,#5a67d8,#805ad5); color: #fff; padding: 28px; border-radius: 10px; position: relative; overflow: hidden; }
+        .head::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.1) 100%); animation: shimmer 3s ease-in-out infinite; }
+        @keyframes shimmer { 0%, 100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
+        .head h1 { margin: 0; font-weight: 500; position: relative; z-index: 1; }
+        .sub { opacity:.9; margin-top:6px; position: relative; z-index: 1; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 12px; margin-top: 16px; position: relative; z-index: 1; }
+        .kpi { background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:14px; text-align:center; transition: all 0.2s ease; cursor: pointer; }
+        .kpi:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(90,103,216,0.15); }
         .kpi .n { font-size: 22px; font-weight: 700; color:#5a67d8; }
         .kpi .l { font-size: 12px; color:#718096; margin-top: 4px; }
         .section { margin-top: 24px; }
@@ -230,27 +234,57 @@ class ReportGenerator:
         .site .url { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background:#fff; border:1px solid #e2e8f0; padding:6px 10px; border-radius:6px; }
         .badge { background:#5a67d8; color:#fff; border-radius:999px; padding:4px 10px; font-size:12px; font-weight:700; }
         .toolbar { display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:10px 12px; border-bottom:1px solid #edf2f7; background:#fff; }
-        .pill { border:1px solid #cbd5e0; border-radius:999px; padding:4px 10px; font-size:12px; cursor:pointer; user-select:none; }
+        .pill { border:1px solid #cbd5e0; border-radius:999px; padding:4px 10px; font-size:12px; cursor:pointer; user-select:none; transition: all 0.2s ease; }
+        .pill:hover { background: #f7fafc; transform: translateY(-1px); }
         .pill.active { background:#2b6cb0; color:#fff; border-color:#2b6cb0; }
-        .btn { background:#edf2f7; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; font-size:12px; cursor:pointer; }
-        .btn:hover { background:#e2e8f0; }
+        .btn { background:#edf2f7; border:1px solid #cbd5e0; border-radius:6px; padding:6px 10px; font-size:12px; cursor:pointer; transition: all 0.2s ease; }
+        .btn:hover { background:#e2e8f0; transform: translateY(-1px); box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         table { width:100%; border-collapse:collapse; }
         th, td { border-bottom:1px solid #edf2f7; text-align:left; padding:10px 8px; vertical-align: top; }
         th { background:#fafafa; font-weight:600; color:#4a5568; position: sticky; top: 0; }
+        tr { transition: background-color 0.2s ease; }
+        tr:hover { background-color: #f8fafc; }
         .sev { font-weight:700; padding:2px 8px; border-radius:999px; font-size:12px; display:inline-block; }
         .sev.critical { background:#e53e3e; color:#fff; }
         .sev.moderate { background:#dd6b20; color:#fff; }
         .sev.low { background:#38a169; color:#fff; }
-        details { background:#fff; border:1px solid #e2e8f0; border-radius:8px; overflow:hidden; }
-        summary { cursor:pointer; list-style:none; padding:10px 12px; font-weight:600; }
+        details { background:#fff; border:1px solid #e2e8f0; border-radius:8px; overflow:hidden; transition: all 0.3s ease; }
+        details:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        summary { cursor:pointer; list-style:none; padding:10px 12px; font-weight:600; transition: background-color 0.2s ease; }
+        summary:hover { background-color: #f7fafc; }
         summary::-webkit-details-marker { display:none; }
         .muted { color:#718096; font-size:12px; }
         .fix { background:#e6fffa; border:1px solid #b2f5ea; color:#234e52; padding:8px 10px; border-radius:6px; }
         .footer { margin-top: 22px; text-align:center; color:#718096; font-size:12px; }
-        @media (max-width: 720px) { .grid { grid-template-columns: repeat(2,1fr);} th:nth-child(5), td:nth-child(5) { display:none; } }
+        
+        /* Dark mode toggle */
+        .theme-toggle { position: fixed; top: 20px; right: 20px; background: #fff; border: 1px solid #e2e8f0; border-radius: 50%; width: 48px; height: 48px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.3s ease; z-index: 1000; }
+        .theme-toggle:hover { transform: scale(1.1); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+        
+        /* Dark mode styles */
+        body.dark { background: #1a202c; color: #e2e8f0; }
+        body.dark .card { background: #2d3748; border-color: #4a5568; }
+        body.dark .head { background: linear-gradient(135deg,#2d3748,#4a5568); }
+        body.dark .kpi { background: #2d3748; border-color: #4a5568; }
+        body.dark .kpi .n { color: #81e6d9; }
+        body.dark .site .site-head { background: #2d3748; border-color: #4a5568; }
+        body.dark .site .url { background: #4a5568; border-color: #718096; color: #e2e8f0; }
+        body.dark .toolbar { background: #2d3748; border-color: #4a5568; }
+        body.dark .pill { border-color: #4a5568; color: #e2e8f0; }
+        body.dark .pill:hover { background: #4a5568; }
+        body.dark .btn { background: #4a5568; border-color: #718096; color: #e2e8f0; }
+        body.dark .btn:hover { background: #718096; }
+        body.dark th { background: #2d3748; color: #e2e8f0; }
+        body.dark tr:hover { background-color: #4a5568; }
+        body.dark details { background: #2d3748; border-color: #4a5568; }
+        body.dark summary:hover { background-color: #4a5568; }
+        body.dark .theme-toggle { background: #2d3748; border-color: #4a5568; color: #e2e8f0; }
+        
+        @media (max-width: 720px) { .grid { grid-template-columns: repeat(2,1fr);} th:nth-child(5), td:nth-child(5) { display:none; } .theme-toggle { top: 10px; right: 10px; width: 40px; height: 40px; } }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">🌙</button>
     <div class=\"wrap\">
         <div class=\"head card\"> 
             <h1>Accessibility Scan Report</h1>
@@ -562,8 +596,126 @@ class ReportGenerator:
         <div class="metric">Moderate Issues: {summary.moderate_issues}</div>
         <div class="metric">Low Issues: {summary.low_issues}</div>
         <div class="metric">Average Score: <span class="score">{summary.average_accessibility_score}/100</span></div>
-        <div class="metric">Total Duration: {summary.scan_duration:.2f}s</div>
+        <div class="metric">Total Duration: {summary.scan_duration:.2f}s        </div>
     </div>
+    
+    <script>
+        // Dark mode toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // Load saved theme preference
+        const savedTheme = localStorage.getItem('accessibility-theme');
+        if (savedTheme === 'dark') {{
+            body.classList.add('dark');
+            themeToggle.textContent = '☀️';
+        }}
+        
+        themeToggle.addEventListener('click', () => {{
+            body.classList.toggle('dark');
+            const isDark = body.classList.contains('dark');
+            localStorage.setItem('accessibility-theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        }});
+        
+        // Interactive features
+        document.addEventListener('DOMContentLoaded', () => {{
+            // Filter pills functionality
+            const filterPills = document.querySelectorAll('.pill');
+            filterPills.forEach(pill => {{
+                pill.addEventListener('click', () => {{
+                    const section = pill.closest('details');
+                    const pills = section.querySelectorAll('.pill');
+                    pills.forEach(p => p.classList.remove('active'));
+                    pill.classList.add('active');
+                    
+                    // Filter table rows
+                    const table = section.querySelector('table');
+                    if (table) {{
+                        const rows = table.querySelectorAll('tbody tr');
+                        const filterType = pill.dataset.filter;
+                        const filterSev = pill.dataset.sev;
+                        
+                        rows.forEach(row => {{
+                            if (filterType === 'all' || row.dataset.sev === filterSev) {{
+                                row.style.display = '';
+                            }} else {{
+                                row.style.display = 'none';
+                            }}
+                        }});
+                    }}
+                }});
+            }});
+            
+            // Copy CSV functionality
+            document.querySelectorAll('.act-copy-csv').forEach(btn => {{
+                btn.addEventListener('click', () => {{
+                    const section = btn.closest('details');
+                    const table = section.querySelector('table');
+                    if (table) {{
+                        const csv = tableToCSV(table);
+                        navigator.clipboard.writeText(csv).then(() => {{
+                            btn.textContent = 'Copied!';
+                            setTimeout(() => btn.textContent = 'Copy CSV', 2000);
+                        }});
+                    }}
+                }});
+            }});
+            
+            // Download JSON functionality
+            document.querySelectorAll('.act-download-json').forEach(btn => {{
+                btn.addEventListener('click', () => {{
+                    const section = btn.closest('details');
+                    const table = section.querySelector('table');
+                    if (table) {{
+                        const json = tableToJSON(table);
+                        downloadJSON(json, 'accessibility_issues.json');
+                    }}
+                }});
+            }});
+            
+            // Smooth scroll to sections
+            document.querySelectorAll('summary').forEach(summary => {{
+                summary.addEventListener('click', () => {{
+                    setTimeout(() => {{
+                        summary.scrollIntoView({{ behavior: 'smooth', block: 'nearest' }});
+                    }}, 100);
+                }});
+            }});
+        }});
+        
+        function tableToCSV(table) {{
+            const rows = Array.from(table.querySelectorAll('tr'));
+            return rows.map(row => 
+                Array.from(row.querySelectorAll('th, td'))
+                    .map(cell => `"${{cell.textContent.trim()}}"`)
+                    .join(',')
+            ).join('\\n');
+        }}
+        
+        function tableToJSON(table) {{
+            const headers = Array.from(table.querySelectorAll('th')).map(th => th.textContent.trim());
+            const rows = Array.from(table.querySelectorAll('tbody tr'));
+            return rows.map(row => {{
+                const cells = Array.from(row.querySelectorAll('td'));
+                const obj = {{}};
+                headers.forEach((header, index) => {{
+                    obj[header] = cells[index] ? cells[index].textContent.trim() : '';
+                }});
+                return obj;
+            }});
+        }}
+        
+        function downloadJSON(data, filename) {{
+            const blob = new Blob([JSON.stringify(data, null, 2)], {{ type: 'application/json' }});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+        }}
+    </script>
 </body>
 </html>
         """

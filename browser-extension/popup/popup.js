@@ -110,8 +110,11 @@ class AccessibilityPopup {
             return;
         }
 
-        // Show results container
-        document.getElementById('resultsContainer').style.display = 'block';
+        // Show results container with animation
+        const resultsContainer = document.getElementById('resultsContainer');
+        resultsContainer.style.display = 'block';
+        resultsContainer.style.opacity = '0';
+        resultsContainer.style.transform = 'translateY(20px)';
         
         // Update summary stats
         this.updateSummaryStats();
@@ -121,6 +124,13 @@ class AccessibilityPopup {
         
         // Show/hide apply fixes button based on selectable fixes
         this.updateApplyButton();
+        
+        // Animate in
+        setTimeout(() => {
+            resultsContainer.style.transition = 'all 0.5s ease';
+            resultsContainer.style.opacity = '1';
+            resultsContainer.style.transform = 'translateY(0)';
+        }, 100);
     }
 
     updateSummaryStats() {
@@ -143,7 +153,16 @@ class AccessibilityPopup {
         this.filteredResults = this.getFilteredResults();
         this.filteredResults.forEach((issue, index) => {
             const issueElement = this.createIssueElement(issue, index, template);
+            issueElement.style.opacity = '0';
+            issueElement.style.transform = 'translateX(-20px)';
             issuesList.appendChild(issueElement);
+            
+            // Staggered animation
+            setTimeout(() => {
+                issueElement.style.transition = 'all 0.4s ease';
+                issueElement.style.opacity = '1';
+                issueElement.style.transform = 'translateX(0)';
+            }, index * 100);
         });
     }
 
