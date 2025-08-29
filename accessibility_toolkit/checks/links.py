@@ -96,36 +96,41 @@ class LinkAccessibilityCheck(BaseCheck):
         """Check if link text is non-descriptive."""
         text_content = link.get_text(strip=True)
         
-        # Common non-descriptive link text patterns
+        # Common non-descriptive link text patterns (expanded)
         non_descriptive_patterns = [
             "click here", "here", "more", "more info", "more information",
             "read more", "learn more", "continue", "next", "previous",
             "back", "forward", "submit", "go", "link", "this", "that",
             "click", "tap", "press", "select", "choose", "browse",
             "view", "see", "show", "display", "open", "download",
-            "get", "find", "search", "look", "check", "verify"
+            "get", "find", "search", "look", "check", "verify",
+            # additions
+            "details", "info", "information", "more details", "start", "try",
+            "home", "about", "services", "products"  # generic nav labels without context
         ]
         
         text_lower = text_content.lower().strip()
         
-        # Check for exact matches
-        if text_lower in non_descriptive_patterns:
+        # Check for exact matches (after stripping punctuation)
+        import re
+        text_sanitized = re.sub(r"[\s\-–—:;,.!?()\[\]{}]+", " ", text_lower).strip()
+        if text_sanitized in non_descriptive_patterns:
             return True
         
         # Check for patterns within text
         for pattern in non_descriptive_patterns:
-            if pattern in text_lower:
+            if pattern in text_sanitized:
                 # Allow if it's part of a longer, more descriptive phrase
-                if len(text_content) > len(pattern) + 5:
+                if len(text_sanitized) > len(pattern) + 8:
                     continue
                 return True
         
         # Check for very short text
-        if len(text_content.strip()) < 3:
+        if len(text_sanitized) < 3:
             return True
         
         # Check for generic text
-        if text_content.strip() in ["link", "url", "page"]:
+        if text_sanitized in ["link", "url", "page"]:
             return True
         
         return False

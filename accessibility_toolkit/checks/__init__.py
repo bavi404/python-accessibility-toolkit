@@ -13,6 +13,7 @@ from .landmarks import LandmarkCheck
 from .keyboard import KeyboardNavigationCheck
 from .media import MediaAccessibilityCheck
 from .skip_link import SkipLinkCheck
+from .autoplay_controls import AutoplayControlsCheck
 
 __all__ = [
     "BaseCheck",
@@ -26,4 +27,5 @@ __all__ = [
     "KeyboardNavigationCheck",
     "MediaAccessibilityCheck",
     "SkipLinkCheck",
+    "AutoplayControlsCheck",
 ]
