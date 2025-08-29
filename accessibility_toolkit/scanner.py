@@ -35,6 +35,7 @@ from .checks import (
     LandmarkCheck,
     KeyboardNavigationCheck
 )
+from .utils import deduplicate_issues, filter_visible_elements
 
 
 class AccessibilityScanner:
@@ -212,6 +213,21 @@ class AccessibilityScanner:
             if meta_desc:
                 page_description = meta_desc.get('content', '')
             
+            # Filter to only visible elements for scanning
+            visible_elements = filter_visible_elements(soup, self.viewport)
+            if not visible_elements:
+                # If no visible elements found, return success
+                return ScanResult(
+                    url=url,
+                    timestamp=None,
+                    issues=[],
+                    page_title=page_title,
+                    page_description=page_description,
+                    scan_duration=time.time() - start_time,
+                    status="completed",
+                    message="No visible content found to scan"
+                )
+            
             # Run all accessibility checks
             all_issues = []
             for check in self.checks:
@@ -221,6 +237,9 @@ class AccessibilityScanner:
                 except Exception as e:
                     print(f"Warning: Check {check.__class__.__name__} failed: {e}")
                     continue
+            
+            # Apply de-duplication to remove repetitive issues
+            all_issues = deduplicate_issues(all_issues)
             
             scan_duration = time.time() - start_time
             

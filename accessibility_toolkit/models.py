@@ -85,6 +85,7 @@ class ScanResult:
     scan_duration: float = 0.0
     status: str = "completed"
     error_message: Optional[str] = None
+    message: Optional[str] = None  # Success message or additional info
     metadata: Dict[str, Any] = field(default_factory=dict)
     
     def __post_init__(self):
@@ -159,6 +160,7 @@ class ScanResult:
             "scan_duration": self.scan_duration,
             "status": self.status,
             "error_message": self.error_message,
+            "message": self.message,
             "metadata": self.metadata,
             "summary": {
                 "total_issues": self.total_issues,

@@ -373,7 +373,16 @@ class AccessibilityPopup {
 
     showNoIssues() {
         this.hideAllStates();
-        document.getElementById('noIssuesState').style.display = 'block';
+        const noIssuesState = document.getElementById('noIssuesState');
+        noIssuesState.style.display = 'block';
+        noIssuesState.style.opacity = '0';
+        noIssuesState.style.transform = 'scale(0.9)';
+        
+        setTimeout(() => {
+            noIssuesState.style.transition = 'all 0.5s ease';
+            noIssuesState.style.opacity = '1';
+            noIssuesState.style.transform = 'scale(1)';
+        }, 100);
     }
 
     showError(message) {

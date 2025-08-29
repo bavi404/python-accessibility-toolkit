@@ -308,6 +308,15 @@ class ReportGenerator:
 
                 {% if result.status != 'completed' %}
                     <div style=\"padding:14px\">Scan failed: {{ result.error_message }}</div>
+                {% elif result.issues|length == 0 %}
+                    <div style=\"padding:20px; text-align:center; background:#f0f9ff; border:1px solid #0ea5e9; border-radius:8px; margin:12px;\">
+                        <div style=\"font-size:48px; margin-bottom:12px;\">🎉</div>
+                        <h3 style=\"color:#0c4a6e; margin:0 0 8px 0;\">Great News!</h3>
+                        <p style=\"color:#0369a1; margin:0; font-size:14px;\">
+                            {% if result.message %}{{ result.message }}{% else %}No accessibility issues found on this page!{% endif %}
+                        </p>
+                        <p style=\"color:#0c4a6e; margin:8px 0 0 0; font-size:12px;\">Your page meets accessibility standards.</p>
+                    </div>
                 {% else %}
                 <details data-section="crit">
                     <summary>🚨 Critical ({{ result.issues|selectattr('severity.value','equalto','critical')|list|length }})</summary>
