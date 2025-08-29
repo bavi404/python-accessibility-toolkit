@@ -16,6 +16,8 @@ from .skip_link import SkipLinkCheck
 from .autoplay_controls import AutoplayControlsCheck
 from .focus_indicator import FocusIndicatorCheck
 from .keyboard_traps import KeyboardTrapsCheck
+from .time_limits import TimeLimitsCheck
+from .viewport import ResponsiveViewportCheck
 
 __all__ = [
     "BaseCheck",
@@ -32,4 +34,6 @@ __all__ = [
     "AutoplayControlsCheck",
     "FocusIndicatorCheck",
     "KeyboardTrapsCheck",
+    "TimeLimitsCheck",
+    "ResponsiveViewportCheck",
 ]

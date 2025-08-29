@@ -39,6 +39,8 @@ from .checks import (
     AutoplayControlsCheck
     , FocusIndicatorCheck
     , KeyboardTrapsCheck
+    , TimeLimitsCheck
+    , ResponsiveViewportCheck
 )
 from .utils import deduplicate_issues, filter_visible_elements
 
@@ -72,6 +74,8 @@ class AccessibilityScanner:
             AutoplayControlsCheck(self.config.get("autoplay", {})),
             FocusIndicatorCheck(self.config.get("focus", {})),
             KeyboardTrapsCheck(self.config.get("keyboard_traps", {})),
+            TimeLimitsCheck(self.config.get("time_limits", {})),
+            ResponsiveViewportCheck(self.config.get("viewport", {})),
         ]
         
         # Scanner configuration
