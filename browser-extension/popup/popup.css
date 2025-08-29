@@ -562,10 +562,19 @@ body {
     background: #f8f9fa;
     padding: 15px 20px;
     border-top: 1px solid #e9ecef;
+    margin-top: auto;
+}
+
+.footer-controls {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.footer-links {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: auto;
 }
 
 .settings-link {

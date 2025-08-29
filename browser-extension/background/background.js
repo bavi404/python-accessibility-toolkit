@@ -285,6 +285,12 @@ class AccessibilityBackground {
             contexts: ['page']
         });
 
+        chrome.contextMenus.create({
+            id: 'showAccessibilityToolbar',
+            title: 'Show Accessibility Toolbar',
+            contexts: ['page']
+        });
+
         // Handle context menu clicks
         chrome.contextMenus.onClicked.addListener((info, tab) => {
             this.handleContextMenuClick(info, tab);
@@ -306,6 +312,12 @@ class AccessibilityBackground {
 
             case 'accessibilityOptions':
                 chrome.runtime.openOptionsPage();
+                break;
+
+            case 'showAccessibilityToolbar':
+                chrome.tabs.sendMessage(tab.id, { action: 'showToolbar' }).catch(() => {
+                    this.showNotification('Please refresh the page to use accessibility features', 'warning');
+                });
                 break;
         }
     }

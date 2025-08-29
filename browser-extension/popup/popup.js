@@ -59,6 +59,15 @@ class AccessibilityPopup {
             this.startScan();
         });
 
+        // Toolbar controls
+        document.getElementById('showToolbarBtn').addEventListener('click', () => {
+            this.showToolbar();
+        });
+
+        document.getElementById('hideToolbarBtn').addEventListener('click', () => {
+            this.hideToolbar();
+        });
+
         // Filters: severity chips
         const chips = [
             'chipAll', 'chipCritical', 'chipModerate', 'chipLow'
@@ -428,6 +437,26 @@ class AccessibilityPopup {
 
     async shouldAutoScan() {
         return this.preferences?.autoScan === true;
+    }
+
+    async showToolbar() {
+        try {
+            await chrome.tabs.sendMessage(this.currentTab.id, { action: 'showToolbar' });
+            this.showNotification('Accessibility toolbar shown', 'success');
+        } catch (error) {
+            console.error('Failed to show toolbar:', error);
+            this.showNotification('Failed to show toolbar', 'error');
+        }
+    }
+
+    async hideToolbar() {
+        try {
+            await chrome.tabs.sendMessage(this.currentTab.id, { action: 'hideToolbar' });
+            this.showNotification('Accessibility toolbar hidden', 'success');
+        } catch (error) {
+            console.error('Failed to hide toolbar:', error);
+            this.showNotification('Failed to hide toolbar', 'error');
+        }
     }
 }
 
