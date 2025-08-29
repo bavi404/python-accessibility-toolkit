@@ -11,6 +11,8 @@ from .links import LinkAccessibilityCheck
 from .aria import AriaCheck
 from .landmarks import LandmarkCheck
 from .keyboard import KeyboardNavigationCheck
+from .media import MediaAccessibilityCheck
+from .skip_link import SkipLinkCheck
 
 __all__ = [
     "BaseCheck",
@@ -22,4 +24,6 @@ __all__ = [
     "AriaCheck",
     "LandmarkCheck",
     "KeyboardNavigationCheck",
+    "MediaAccessibilityCheck",
+    "SkipLinkCheck",
 ]

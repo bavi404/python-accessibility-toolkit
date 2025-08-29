@@ -33,7 +33,9 @@ from .checks import (
     LinkAccessibilityCheck,
     AriaCheck,
     LandmarkCheck,
-    KeyboardNavigationCheck
+    KeyboardNavigationCheck,
+    MediaAccessibilityCheck,
+    SkipLinkCheck
 )
 from .utils import deduplicate_issues, filter_visible_elements
 
@@ -62,6 +64,8 @@ class AccessibilityScanner:
             AriaCheck(self.config.get("aria", {})),
             LandmarkCheck(self.config.get("landmarks", {})),
             KeyboardNavigationCheck(self.config.get("keyboard", {})),
+            MediaAccessibilityCheck(self.config.get("media", {})),
+            SkipLinkCheck(self.config.get("skip_links", {})),
         ]
         
         # Scanner configuration
