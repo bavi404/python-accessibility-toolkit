@@ -37,6 +37,8 @@ from .checks import (
     MediaAccessibilityCheck,
     SkipLinkCheck,
     AutoplayControlsCheck
+    , FocusIndicatorCheck
+    , KeyboardTrapsCheck
 )
 from .utils import deduplicate_issues, filter_visible_elements
 
@@ -68,6 +70,8 @@ class AccessibilityScanner:
             MediaAccessibilityCheck(self.config.get("media", {})),
             SkipLinkCheck(self.config.get("skip_links", {})),
             AutoplayControlsCheck(self.config.get("autoplay", {})),
+            FocusIndicatorCheck(self.config.get("focus", {})),
+            KeyboardTrapsCheck(self.config.get("keyboard_traps", {})),
         ]
         
         # Scanner configuration

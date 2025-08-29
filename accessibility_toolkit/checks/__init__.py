@@ -14,6 +14,8 @@ from .keyboard import KeyboardNavigationCheck
 from .media import MediaAccessibilityCheck
 from .skip_link import SkipLinkCheck
 from .autoplay_controls import AutoplayControlsCheck
+from .focus_indicator import FocusIndicatorCheck
+from .keyboard_traps import KeyboardTrapsCheck
 
 __all__ = [
     "BaseCheck",
@@ -28,4 +30,6 @@ __all__ = [
     "MediaAccessibilityCheck",
     "SkipLinkCheck",
     "AutoplayControlsCheck",
+    "FocusIndicatorCheck",
+    "KeyboardTrapsCheck",
 ]
