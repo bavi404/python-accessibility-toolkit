@@ -37,6 +37,19 @@
                 </div>
             </div>
 
+            <!-- Filters -->
+            <div class="filters" id="filtersBar">
+                <div class="severity-filters">
+                    <button class="chip active" data-severity="all" id="chipAll">All</button>
+                    <button class="chip" data-severity="critical" id="chipCritical">Critical</button>
+                    <button class="chip" data-severity="moderate" id="chipModerate">Moderate</button>
+                    <button class="chip" data-severity="low" id="chipLow">Low</button>
+                </div>
+                <div class="search">
+                    <input type="text" id="searchInput" placeholder="Search issues...">
+                </div>
+            </div>
+
             <div class="issues-list" id="issuesList">
                 <!-- Issues will be populated here -->
             </div>

@@ -39,6 +39,11 @@ class AccessibilityScanner {
                     const reverted = await this.revertFixes();
                     sendResponse({ success: true, reverted });
                     break;
+                
+                case 'showNotification':
+                    this.showInPageNotification(request.message, request.type);
+                    sendResponse({ success: true });
+                    break;
                     
                 default:
                     sendResponse({ success: false, error: 'Unknown action' });
@@ -46,6 +51,55 @@ class AccessibilityScanner {
         } catch (error) {
             console.error('Content script error:', error);
             sendResponse({ success: false, error: error.message });
+        }
+    }
+
+    showInPageNotification(message, type = 'info') {
+        try {
+            const existing = document.querySelector('.a11y-assistant-toast');
+            if (existing) existing.remove();
+
+            const toast = document.createElement('div');
+            toast.className = `a11y-assistant-toast a11y-${type}`;
+            toast.textContent = message;
+
+            const style = document.createElement('style');
+            style.textContent = `
+                .a11y-assistant-toast {
+                    position: fixed;
+                    bottom: 16px;
+                    right: 16px;
+                    z-index: 2147483647;
+                    background: #1f2937;
+                    color: #fff;
+                    padding: 10px 14px;
+                    border-radius: 6px;
+                    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+                    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+                    opacity: 0;
+                    transform: translateY(8px);
+                    transition: opacity .2s ease, transform .2s ease;
+                    max-width: 60vw;
+                }
+                .a11y-assistant-toast.a11y-success { background: #166534; }
+                .a11y-assistant-toast.a11y-error { background: #991b1b; }
+                .a11y-assistant-toast.a11y-info { background: #1f2937; }
+            `;
+            document.documentElement.appendChild(style);
+            document.documentElement.appendChild(toast);
+
+            requestAnimationFrame(() => {
+                toast.style.opacity = '1';
+                toast.style.transform = 'translateY(0)';
+            });
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(8px)';
+                setTimeout(() => toast.remove(), 200);
+            }, 3000);
+        } catch (e) {
+            // swallow
         }
     }
 

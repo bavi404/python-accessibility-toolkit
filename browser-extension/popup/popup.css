@@ -105,6 +105,42 @@ body {
     padding: 20px;
 }
 
+.filters {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.severity-filters {
+    display: flex;
+    gap: 6px;
+}
+
+.chip {
+    padding: 6px 10px;
+    border-radius: 9999px;
+    border: 1px solid #e9ecef;
+    background: #fff;
+    color: #495057;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.chip.active {
+    background: #667eea;
+    border-color: #667eea;
+    color: #fff;
+}
+
+.search input {
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 6px 10px;
+    width: 160px;
+}
+
 .results-header {
     display: flex;
     justify-content: space-between;

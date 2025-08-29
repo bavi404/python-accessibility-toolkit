@@ -10,7 +10,19 @@ from typing import List, Dict, Any, Optional
 from urllib.parse import urlparse
 import aiohttp
 from bs4 import BeautifulSoup
-from pyppeteer import launch
+
+# Try to import Playwright first, fallback to Pyppeteer
+try:
+    from playwright.async_api import async_playwright
+    PLAYWRIGHT_AVAILABLE = True
+except ImportError:
+    PLAYWRIGHT_AVAILABLE = False
+
+try:
+    from pyppeteer import launch
+    PYPPETEER_AVAILABLE = True
+except ImportError:
+    PYPPETEER_AVAILABLE = False
 
 from .models import ScanResult, AccessibilityIssue, ScanSummary
 from .checks import (
@@ -72,41 +84,67 @@ class AccessibilityScanner:
         """Start the browser and session."""
         if not self.browser:
             try:
-                # Try to use system Chrome first (better for Apple Silicon)
-                chrome_paths = [
-                    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-                    '/Applications/Chromium.app/Contents/MacOS/Chromium',
-                    '/usr/bin/google-chrome',
-                    '/usr/bin/chromium'
-                ]
+                # Try Playwright first (most reliable for modern JS-heavy sites)
+                if PLAYWRIGHT_AVAILABLE:
+                    print("🚀 Using Playwright for headless browser rendering")
+                    self.playwright = await async_playwright().start()
+                    self.browser = await self.playwright.chromium.launch(
+                        headless=True,
+                        args=[
+                            '--no-sandbox',
+                            '--disable-setuid-sandbox',
+                            '--disable-dev-shm-usage',
+                            '--disable-accelerated-2d-canvas',
+                            '--no-first-run',
+                            '--no-zygote',
+                            '--disable-gpu'
+                        ]
+                    )
+                    print("✅ Playwright browser initialized successfully")
+                    return
                 
-                executable_path = None
-                for path in chrome_paths:
-                    if os.path.exists(path):
-                        executable_path = path
-                        break
-                
-                launch_options = {
-                    'headless': True,
-                    'args': [
-                        '--no-sandbox',
-                        '--disable-setuid-sandbox',
-                        '--disable-dev-shm-usage',
-                        '--disable-accelerated-2d-canvas',
-                        '--no-first-run',
-                        '--no-zygote',
-                        '--disable-gpu'
+                # Fallback to Pyppeteer with system Chrome
+                if PYPPETEER_AVAILABLE:
+                    chrome_paths = [
+                        '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+                        '/Applications/Chromium.app/Contents/MacOS/Chromium',
+                        '/usr/bin/google-chrome',
+                        '/usr/bin/chromium'
                     ]
-                }
+                    
+                    executable_path = None
+                    for path in chrome_paths:
+                        if os.path.exists(path):
+                            executable_path = path
+                            break
+                    
+                    launch_options = {
+                        'headless': True,
+                        'args': [
+                            '--no-sandbox',
+                            '--disable-setuid-sandbox',
+                            '--disable-dev-shm-usage',
+                            '--disable-accelerated-2d-canvas',
+                            '--no-first-run',
+                            '--no-zygote',
+                            '--disable-gpu'
+                        ]
+                    }
+                    
+                    if executable_path:
+                        launch_options['executablePath'] = executable_path
+                        print(f"✅ Using system Chrome with Pyppeteer: {executable_path}")
+                    else:
+                        print("⚠️  No system Chrome found, using Pyppeteer's Chromium")
+                    
+                    self.browser = await launch(**launch_options)
+                    print("✅ Pyppeteer browser initialized successfully")
+                    return
                 
-                if executable_path:
-                    launch_options['executablePath'] = executable_path
-                    print(f"✅ Using system Chrome: {executable_path}")
-                else:
-                    print("⚠️  No system Chrome found, using Pyppeteer's Chromium")
-                
-                self.browser = await launch(**launch_options)
-                print("✅ Headless browser initialized successfully")
+                # No browser available
+                print("❌ No browser automation available (Playwright or Pyppeteer)")
+                print("   Falling back to HTTP-only mode for basic checks")
+                self.browser = None
                 
             except Exception as e:
                 print(f"❌ Failed to initialize headless browser: {e}")
@@ -120,6 +158,10 @@ class AccessibilityScanner:
     
     async def stop(self):
         """Stop the browser and session."""
+        if hasattr(self, 'playwright') and self.playwright:
+            await self.playwright.stop()
+            self.playwright = None
+        
         if self.browser:
             await self.browser.close()
             self.browser = None
@@ -256,8 +298,12 @@ class AccessibilityScanner:
         Returns:
             HTML content as string, or None if failed
         """
+        # If we have a browser (Playwright or Pyppeteer), use it for better JS rendering
+        if self.browser:
+            return await self._get_page_content_with_browser(url)
+        
+        # Otherwise, try aiohttp for basic content
         try:
-            # Try using aiohttp first (faster for simple pages)
             async with self.session.get(url) as response:
                 if response.status == 200:
                     return await response.text()
@@ -266,12 +312,11 @@ class AccessibilityScanner:
                     return None
         except Exception as e:
             print(f"aiohttp failed for {url}: {e}")
-            # Fallback to Pyppeteer for JavaScript-heavy pages
-            return await self._get_page_content_with_browser(url)
+            return None
     
     async def _get_page_content_with_browser(self, url: str) -> Optional[str]:
         """
-        Get page content using Pyppeteer for JavaScript-heavy pages.
+        Get page content using browser (Playwright or Pyppeteer) for JavaScript-heavy pages.
         
         Args:
             url: URL to fetch
@@ -280,41 +325,10 @@ class AccessibilityScanner:
             HTML content as string, or None if failed
         """
         try:
-            page = await self.browser.newPage()
-            
-            # Set viewport and user agent
-            await page.setViewport(self.viewport)
-            await page.setUserAgent(self.user_agent)
-            
-            # Navigate to the page
-            await page.goto(url, waitUntil='networkidle0', timeout=self.timeout * 1000)
-            
-            # Wait for additional time if specified
-            if self.wait_for > 0:
-                await page.waitFor(self.wait_for)
-            
-            # Get the rendered HTML
-            content = await page.content()
-            
-            await page.close()
-            return content
-            
-        except Exception as e:
-            print(f"Pyppeteer failed for {url}: {e}")
-            # Try Playwright if available
-            return await self._get_page_content_with_playwright(url)
-
-    async def _get_page_content_with_playwright(self, url: str) -> Optional[str]:
-        """Get page content using Playwright (preferred if installed)."""
-        try:
-            from playwright.async_api import async_playwright  # type: ignore
-        except Exception:
-            return None
-        try:
-            async with async_playwright() as pw:
-                # Prefer Chromium; falls back to WebKit if needed
-                browser = await pw.chromium.launch(headless=True)
-                context = await browser.new_context(
+            # Check if we're using Playwright
+            if hasattr(self, 'playwright') and self.playwright:
+                # Use Playwright
+                context = await self.browser.new_context(
                     user_agent=self.user_agent,
                     viewport=self.viewport,
                 )
@@ -324,11 +338,33 @@ class AccessibilityScanner:
                     await page.wait_for_timeout(self.wait_for)
                 content = await page.content()
                 await context.close()
-                await browser.close()
                 return content
+            else:
+                # Use Pyppeteer
+                page = await self.browser.newPage()
+                
+                # Set viewport and user agent
+                await page.setViewport(self.viewport)
+                await page.setUserAgent(self.user_agent)
+                
+                # Navigate to the page
+                await page.goto(url, waitUntil='networkidle0', timeout=self.timeout * 1000)
+                
+                # Wait for additional time if specified
+                if self.wait_for > 0:
+                    await page.waitFor(self.wait_for)
+                
+                # Get the rendered HTML
+                content = await page.content()
+                
+                await page.close()
+                return content
+                
         except Exception as e:
-            print(f"Playwright failed for {url}: {e}")
+            print(f"Browser failed for {url}: {e}")
             return None
+
+
     
     def _is_valid_url(self, url: str) -> bool:
         """Check if the URL is valid."""

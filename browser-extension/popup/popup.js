@@ -58,6 +58,27 @@ class AccessibilityPopup {
         document.getElementById('retryBtn').addEventListener('click', () => {
             this.startScan();
         });
+
+        // Filters: severity chips
+        const chips = [
+            'chipAll', 'chipCritical', 'chipModerate', 'chipLow'
+        ];
+        chips.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener('click', (e) => {
+                    chips.forEach(cid => document.getElementById(cid).classList.remove('active'));
+                    e.currentTarget.classList.add('active');
+                    this.applyFilters();
+                });
+            }
+        });
+
+        // Filters: search
+        const search = document.getElementById('searchInput');
+        if (search) {
+            search.addEventListener('input', () => this.applyFilters());
+        }
     }
 
     async startScan() {
@@ -119,10 +140,30 @@ class AccessibilityPopup {
         // Clear existing issues
         issuesList.innerHTML = '';
         
-        this.scanResults.forEach((issue, index) => {
+        this.filteredResults = this.getFilteredResults();
+        this.filteredResults.forEach((issue, index) => {
             const issueElement = this.createIssueElement(issue, index, template);
             issuesList.appendChild(issueElement);
         });
+    }
+
+    getFilteredResults() {
+        const activeChip = document.querySelector('.chip.active');
+        const severity = activeChip ? activeChip.dataset.severity : 'all';
+        const q = (document.getElementById('searchInput')?.value || '').toLowerCase();
+
+        return this.scanResults.filter(issue => {
+            const matchSeverity = severity === 'all' ? true : issue.severity === severity;
+            const hay = `${issue.type} ${issue.description} ${issue.element} ${issue.context} ${issue.suggestedFix}`.toLowerCase();
+            const matchQuery = q ? hay.includes(q) : true;
+            return matchSeverity && matchQuery;
+        });
+    }
+
+    applyFilters() {
+        this.populateIssuesList();
+        this.updateApplyButton();
+        this.updateSummaryStats();
     }
 
     createIssueElement(issue, index, template) {
