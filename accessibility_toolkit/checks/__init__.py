@@ -18,6 +18,8 @@ from .focus_indicator import FocusIndicatorCheck
 from .keyboard_traps import KeyboardTrapsCheck
 from .time_limits import TimeLimitsCheck
 from .viewport import ResponsiveViewportCheck
+from .lang_title import LangTitleCheck
+from .reduced_motion import ReducedMotionCheck
 
 __all__ = [
     "BaseCheck",
@@ -36,4 +38,6 @@ __all__ = [
     "KeyboardTrapsCheck",
     "TimeLimitsCheck",
     "ResponsiveViewportCheck",
+    "LangTitleCheck",
+    "ReducedMotionCheck",
 ]

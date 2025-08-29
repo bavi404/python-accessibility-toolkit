@@ -41,6 +41,8 @@ from .checks import (
     , KeyboardTrapsCheck
     , TimeLimitsCheck
     , ResponsiveViewportCheck
+    , LangTitleCheck
+    , ReducedMotionCheck
 )
 from .utils import deduplicate_issues, filter_visible_elements
 
@@ -76,6 +78,8 @@ class AccessibilityScanner:
             KeyboardTrapsCheck(self.config.get("keyboard_traps", {})),
             TimeLimitsCheck(self.config.get("time_limits", {})),
             ResponsiveViewportCheck(self.config.get("viewport", {})),
+            LangTitleCheck(self.config.get("lang_title", {})),
+            ReducedMotionCheck(self.config.get("reduced_motion", {})),
         ]
         
         # Scanner configuration
