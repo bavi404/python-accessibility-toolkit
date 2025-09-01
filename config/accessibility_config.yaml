@@ -1,0 +1,235 @@
+# Accessibility Toolkit Configuration
+# This file demonstrates all available configuration options
+
+# Scanner Configuration
+scanner:
+  # Browser automation settings
+  browser:
+    headless: true
+    timeout: 30000  # 30 seconds
+    viewport:
+      width: 1920
+      height: 1080
+  
+  # Scan behavior
+  scan:
+    max_concurrent: 5
+    retry_failed: true
+    max_retries: 3
+    delay_between_scans: 1.0  # seconds
+  
+  # Content filtering
+  content:
+    filter_visible_only: true
+    ignore_hidden_elements: true
+    max_page_size: "10MB"
+
+# Accessibility Checks Configuration
+checks:
+  # Alt Text Check
+  alt_text:
+    enabled: true
+    check_decorative_images: true
+    require_descriptive_alt: true
+    ignore_patterns:
+      - "spacer"
+      - "decorative"
+      - "bg-"
+  
+  # Color Contrast Check
+  color_contrast:
+    enabled: true
+    min_contrast_ratio: 4.5  # WCAG AA standard
+    check_text_elements: true
+    check_ui_elements: true
+  
+  # Heading Hierarchy Check
+  heading_hierarchy:
+    enabled: true
+    require_single_h1: true
+    check_skipped_levels: true
+    max_heading_depth: 6
+  
+  # Form Accessibility Check
+  forms:
+    enabled: true
+    check_labels: true
+    check_placeholders: true
+    check_required_fields: true
+    check_error_handling: true
+    check_aria_labels: true
+    check_validation: true
+  
+  # Link Accessibility Check
+  links:
+    enabled: true
+    check_descriptive_text: true
+    check_context_awareness: true
+    check_image_links: true
+    check_new_window_warnings: true
+    vague_patterns:
+      actions: ["click here", "here", "this", "that"]
+      navigation: ["read more", "more", "continue", "next"]
+      content: ["learn more", "find out", "discover"]
+  
+  # ARIA Check
+  aria:
+    enabled: true
+    check_aria_labels: true
+    check_aria_descriptions: true
+    check_aria_roles: true
+    check_aria_states: true
+  
+  # Landmark Check
+  landmarks:
+    enabled: true
+    require_main: true
+    require_navigation: true
+    check_landmark_structure: true
+  
+  # Keyboard Navigation Check
+  keyboard:
+    enabled: true
+    check_focusable_elements: true
+    check_tab_order: true
+    check_focus_indicators: true
+    check_keyboard_traps: true
+  
+  # Media Accessibility Check
+  media:
+    enabled: true
+    check_video_captions: true
+    check_audio_transcripts: true
+    check_media_controls: true
+  
+  # Skip Link Check
+  skip_links:
+    enabled: true
+    require_skip_navigation: true
+    check_skip_targets: true
+  
+  # Autoplay Controls Check
+  autoplay:
+    enabled: true
+    check_autoplay_media: true
+    require_user_control: true
+  
+  # Focus Indicator Check
+  focus_indicators:
+    enabled: true
+    check_focus_visibility: true
+    check_focus_style: true
+  
+  # Time Limits Check
+  time_limits:
+    enabled: true
+    check_session_timeouts: true
+    check_form_timeouts: true
+    require_user_control: true
+  
+  # Responsive Viewport Check
+  viewport:
+    enabled: true
+    check_viewport_meta: true
+    check_zoom_restrictions: true
+  
+  # Language and Title Check
+  lang_title:
+    enabled: true
+    check_html_lang: true
+    check_document_title: true
+    require_descriptive_title: true
+  
+  # Reduced Motion Check
+  reduced_motion:
+    enabled: true
+    check_animation_controls: true
+    check_transition_controls: true
+
+# Reporting Configuration
+reporting:
+  # Output formats
+  formats:
+    - html
+    - json
+    - csv
+    - text
+  
+  # HTML Report Settings
+  html:
+    include_screenshots: true
+    include_guidance: true
+    include_wcag_references: true
+    dark_mode: true
+    collapsible_sections: true
+    sticky_headers: true
+  
+  # Issue grouping
+  grouping:
+    deduplicate_issues: true
+    group_by_severity: true
+    group_by_category: true
+    group_by_element_type: true
+  
+  # Severity thresholds
+  severity:
+    critical_threshold: 0
+    moderate_threshold: 3
+    low_threshold: 10
+
+# Browser Extension Configuration
+extension:
+  # Auto-fix settings
+  auto_fix:
+    font_size_increase: true
+    contrast_improvement: true
+    focus_highlighting: true
+    reading_mode: true
+  
+  # UI preferences
+  ui:
+    show_toolbar: true
+    dark_mode: true
+    animations: true
+    notifications: true
+  
+  # Privacy settings
+  privacy:
+    store_data_locally: true
+    no_telemetry: true
+    no_external_requests: true
+
+# Performance Configuration
+performance:
+  # Caching
+  cache:
+    enabled: true
+    max_cache_size: "100MB"
+    cache_duration: 3600  # 1 hour
+  
+  # Optimization
+  optimization:
+    parallel_processing: true
+    memory_limit: "512MB"
+    timeout_multiplier: 1.5
+
+# Integration Configuration
+integration:
+  # CI/CD
+  ci_cd:
+    fail_on_critical: true
+    fail_on_moderate: false
+    generate_reports: true
+    export_results: true
+  
+  # API Integration
+  api:
+    wave_api_key: "${WAVE_API_KEY}"
+    custom_api_endpoint: null
+    api_timeout: 30
+  
+  # Export formats
+  export:
+    formats: ["html", "json", "csv"]
+    include_metadata: true
+    include_timestamps: true

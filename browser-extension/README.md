@@ -1,334 +1,294 @@
-# Accessibility Assistant Browser Extension
+# 🌐 Browser Extension - Accessibility Toolkit
 
-A powerful browser extension that automatically detects accessibility issues on web pages and provides real-time fixes to improve your browsing experience.
+A powerful browser extension that provides real-time accessibility scanning and enhancement for any webpage. Instantly detect accessibility issues and apply temporary fixes to improve your browsing experience.
 
-## 🌟 Features
+## ✨ Features
 
-### **Instant Accessibility Scanning**
-- **One-click scanning** of any web page
-- **Real-time detection** of accessibility issues
-- **Comprehensive coverage** including alt text, color contrast, headings, forms, and more
+### 🔍 **Real-Time Accessibility Scanning**
+- **Instant Analysis**: Scan any webpage with one click
+- **Comprehensive Detection**: 20+ accessibility checks covering all WCAG criteria
+- **Smart Categorization**: Issues organized by accessibility category (Visual, Auditory, Cognitive, Navigation, Forms, Content)
+- **Severity Levels**: Critical, Moderate, and Low priority issues
 
-### **Smart Auto-Fixes**
-- **Temporary fixes** that don't permanently change websites
-- **Intelligent suggestions** for missing alt text, form labels, and ARIA attributes
-- **Visual improvements** like high contrast mode and font size adjustments
-- **Easy reversion** of all applied fixes
+### 🛠️ **Smart Auto-Fixes**
+- **Font Size Control**: Increase/decrease text size for better readability
+- **Contrast Enhancement**: Improve color contrast for better visibility
+- **Focus Highlighting**: Enhanced focus indicators for keyboard navigation
+- **Reading Mode**: Distraction-free reading experience
+- **Layout Simplification**: Hide decorative elements and reduce clutter
 
-### **User-Friendly Interface**
-- **Clean popup interface** with issue categorization by severity
-- **Detailed reports** with actionable suggestions
-- **Export functionality** for team reviews and documentation
-- **Customizable settings** for personalized experience
+### 🎨 **User-Friendly Interface**
+- **Modern Popup**: Clean, intuitive design with dark mode support
+- **Floating Toolbar**: Always-accessible accessibility controls
+- **Interactive Reports**: Detailed issue descriptions with suggested fixes
+- **Export Functionality**: Generate reports for team review
+- **Customizable Settings**: Personalized accessibility experience
+
+### 🔒 **Privacy & Security**
+- **Local Processing**: All scanning happens in your browser
+- **No Data Collection**: Zero telemetry or external requests
+- **Session-Only**: Changes only affect your current browsing session
+- **Secure**: No permissions to read your browsing history
 
 ## 🚀 Installation
 
-### **Chrome/Edge (Chromium-based browsers)**
+### Chrome/Edge Installation
+1. **Download the Extension**
+   - Navigate to the `browser-extension/` folder in this repository
+   - Or download the latest release from GitHub
 
-1. **Download the extension:**
-   - Clone this repository or download the `browser-extension` folder
-   - Ensure all files are present in the folder structure
-
-2. **Enable Developer Mode:**
+2. **Load Unpacked Extension**
    - Open Chrome/Edge and go to `chrome://extensions/`
-   - Toggle "Developer mode" in the top right corner
-
-3. **Load the extension:**
+   - Enable "Developer mode" (toggle in top right)
    - Click "Load unpacked"
-   - Select the `browser-extension` folder
-   - The extension should now appear in your extensions list
+   - Select the `browser-extension/` folder
 
-4. **Pin the extension:**
-   - Click the puzzle piece icon in your toolbar
-   - Find "Accessibility Assistant" and click the pin icon
+3. **Pin the Extension**
+   - Click the puzzle piece icon in the toolbar
+   - Find "Accessibility Toolkit" and click the pin icon
+   - The extension icon will now appear in your toolbar
 
-### **Firefox**
-
-1. **Download the extension:**
-   - Clone this repository or download the `browser-extension` folder
-
-2. **Load the extension:**
+### Firefox Installation
+1. **Load Temporary Add-on**
    - Open Firefox and go to `about:debugging`
    - Click "This Firefox" tab
    - Click "Load Temporary Add-on"
-   - Select the `manifest.json` file from the extension folder
+   - Select the `manifest.json` file from the `browser-extension/` folder
 
 ## 📱 Usage
 
 ### **Basic Scanning**
+1. **Navigate** to any webpage you want to scan
+2. **Click** the Accessibility Toolkit extension icon
+3. **Click** "Scan Page" to start accessibility analysis
+4. **Review** the detected issues and their severity levels
+5. **Apply fixes** for issues you want to resolve
 
-1. **Navigate to any website** you want to check
-2. **Click the Accessibility Assistant icon** in your browser toolbar
-3. **Click "Scan Page"** to start the accessibility analysis
-4. **Review the results** organized by severity (Critical, Moderate, Low)
-5. **Select fixes** you want to apply by checking the boxes
-6. **Click "Apply Selected Fixes"** to implement temporary improvements
+### **Accessibility Toolbar**
+1. **Right-click** anywhere on the page
+2. **Select** "Show Accessibility Toolbar" from context menu
+3. **Use the floating toolbar** for quick accessibility adjustments:
+   - **Font Size**: Increase/decrease text size
+   - **Contrast**: Toggle high contrast mode
+   - **Focus**: Highlight focus indicators
+   - **Reading**: Enable distraction-free reading mode
 
-### **Understanding Results**
+### **Keyboard Shortcuts**
+- **Ctrl+Shift+A** (or Cmd+Shift+A on Mac): Toggle accessibility toolbar
+- **Ctrl+Shift+F**: Increase font size
+- **Ctrl+Shift+G**: Decrease font size
+- **Ctrl+Shift+C**: Toggle high contrast
+- **Ctrl+Shift+R**: Toggle reading mode
 
-The extension categorizes issues by severity:
+## 🎯 Accessibility Categories
 
-- **🔴 Critical**: Missing alt text, form labels, keyboard navigation issues
-- **🟠 Moderate**: Color contrast problems, heading structure issues
-- **🟢 Low**: Minor accessibility concerns, best practice violations
+Our extension organizes issues into comprehensive categories:
 
-### **Applying Fixes**
+### **👁️ Visual Accessibility**
+- **Alt Text**: Missing or inadequate image descriptions
+- **Color Contrast**: Insufficient contrast ratios
+- **Focus Indicators**: Missing or invisible focus styles
+- **Text Size**: Inadequate font sizes for readability
 
-- **Alt Text**: Automatically generates descriptive text for images
-- **Color Contrast**: Applies high-contrast colors for better readability
-- **Form Labels**: Adds temporary labels to unlabeled form elements
-- **ARIA Issues**: Removes invalid ARIA attributes
-- **Keyboard Navigation**: Improves focus management
+### **🔊 Auditory Accessibility**
+- **Media Captions**: Missing video/audio captions
+- **Transcripts**: No text alternatives for audio content
+- **Autoplay Controls**: Media that plays without user consent
 
-### **Reverting Changes**
+### **🧠 Cognitive & Neurological**
+- **Navigation**: Complex or inconsistent navigation
+- **Content Structure**: Poor heading hierarchy
+- **Time Limits**: Unreasonable session timeouts
+- **Reduced Motion**: No controls for animations
 
-- **Click "Revert Changes"** to undo all applied fixes
-- **Refresh the page** to completely restore the original state
-- **Individual fixes** can be reverted by toggling the checkboxes
+### **⌨️ Keyboard Navigation**
+- **Focus Management**: Missing or broken focus indicators
+- **Keyboard Traps**: Elements that trap keyboard users
+- **Tab Order**: Illogical tab navigation sequence
+- **Skip Links**: Missing skip navigation options
+
+### **📝 Form Accessibility**
+- **Labels**: Missing or unclear form field labels
+- **Error Handling**: Inadequate error messages
+- **Validation**: Missing required field indicators
+- **ARIA Support**: Insufficient ARIA attributes
+
+### **🔗 Link & Content**
+- **Descriptive Text**: Vague link labels like "Click here"
+- **Heading Structure**: Improper heading hierarchy
+- **Language**: Missing HTML language attributes
+- **Page Titles**: Generic or missing page titles
 
 ## ⚙️ Configuration
 
-### **Accessing Settings**
+### **Extension Options**
+1. **Right-click** the extension icon
+2. **Select** "Options" or "Manage Extension"
+3. **Customize** your accessibility preferences:
+   - **Auto-fix Settings**: Choose which fixes to apply automatically
+   - **UI Preferences**: Dark mode, animations, notifications
+   - **Scanning Options**: Customize scan behavior
+   - **Privacy Settings**: Control data storage and permissions
 
-1. **Click the extension icon** in your toolbar
-2. **Click the settings link** (⚙️) in the footer
-3. **Customize your experience** with comprehensive options
+### **Custom Accessibility Rules**
+You can customize the extension's behavior by modifying the configuration:
 
-### **Available Settings**
+```javascript
+// Example custom configuration
+const customConfig = {
+  autoFix: {
+    fontSizeIncrease: true,
+    contrastImprovement: true,
+    focusHighlighting: true,
+    readingMode: false
+  },
+  scanning: {
+    includeHiddenElements: false,
+    maxScanTime: 30000,
+    retryFailedScans: true
+  }
+};
+```
 
-#### **General Settings**
-- Enable/disable the extension
-- Auto-scan pages on load
-- Show notifications for issues
+## 📊 Report Generation
 
-#### **Scanning Preferences**
-- Choose which accessibility checks to run
-- Configure scanning behavior
-- Set performance vs. thoroughness balance
+### **Export Options**
+- **HTML Reports**: Professional, interactive reports with issue details
+- **JSON Export**: Machine-readable data for analysis
+- **CSV Export**: Spreadsheet-friendly format for team review
+- **Summary Reports**: Quick overview of accessibility status
 
-#### **Auto-Fix Preferences**
-- Enable automatic fixes for common issues
-- Set default behavior for different issue types
-- Configure fix application rules
+### **Report Contents**
+Each report includes:
+- **Issue Summary**: Count and severity breakdown
+- **Detailed Findings**: Specific issues with element locations
+- **Suggested Fixes**: Actionable recommendations for developers
+- **WCAG References**: Relevant accessibility guidelines
+- **Category Breakdown**: Issues organized by accessibility type
 
-#### **Visual Preferences**
-- Show issue indicators on pages
-- Enable high contrast mode
-- Adjust font sizes for readability
+## 🧪 Testing & Development
 
-#### **Advanced Settings**
-- Debug mode for developers
-- Performance optimization options
-- Strict accessibility guidelines
+### **Local Development**
+1. **Clone** the repository
+2. **Navigate** to `browser-extension/` folder
+3. **Make changes** to extension files
+4. **Reload** the extension in your browser
+5. **Test** changes on various websites
 
-## 🔧 Development
-
-### **Project Structure**
-
+### **File Structure**
 ```
 browser-extension/
 ├── manifest.json          # Extension configuration
-├── popup/                 # Popup interface
-│   ├── popup.html        # Main popup HTML
-│   ├── popup.css         # Popup styling
-│   └── popup.js          # Popup logic
-├── content/               # Content scripts
-│   ├── content.js        # Page scanning and fixes
-│   └── content.css       # Visual indicators
-├── background/            # Background service worker
-│   └── background.js     # Extension lifecycle management
-├── options/               # Settings page
-│   ├── options.html      # Options interface
-│   ├── options.css       # Options styling
-│   └── options.js        # Options logic
+├── background/            # Service worker scripts
+├── content/               # Content scripts for page interaction
+├── popup/                 # Extension popup UI
+├── options/               # Extension options page
 └── icons/                 # Extension icons
-    ├── icon16.png        # 16x16 icon
-    ├── icon32.png        # 32x32 icon
-    ├── icon48.png        # 48x48 icon
-    └── icon128.png       # 128x128 icon
 ```
 
 ### **Key Components**
+- **`manifest.json`**: Extension metadata and permissions
+- **`background.js`**: Service worker for extension lifecycle
+- **`content.js`**: Page scanning and issue detection
+- **`accessibility-enhancer.js`**: Real-time accessibility improvements
+- **`popup/`**: User interface for scan results and controls
 
-#### **Content Script (`content.js`)**
-- Runs on web pages to scan for accessibility issues
-- Applies temporary fixes and visual improvements
-- Monitors page changes for dynamic content
+## 🔧 Troubleshooting
 
-#### **Popup Interface (`popup/`)**
-- User-friendly interface for scanning and results
-- Issue categorization and fix selection
-- Export and reporting functionality
+### **Common Issues**
 
-#### **Background Service Worker (`background.js`)**
-- Manages extension lifecycle and state
-- Handles communication between components
-- Manages tab updates and notifications
+**Extension not loading**
+- Ensure Developer mode is enabled
+- Check for syntax errors in manifest.json
+- Try reloading the extension
 
-#### **Options Page (`options/`)**
-- Comprehensive settings management
-- Import/export configuration
-- User preference storage
+**Scanning not working**
+- Verify the extension has necessary permissions
+- Check browser console for error messages
+- Ensure the webpage is fully loaded
 
-### **Adding New Accessibility Checks**
+**Auto-fixes not applying**
+- Check if the webpage has restrictive Content Security Policy
+- Verify the extension has scripting permissions
+- Try refreshing the page and reapplying fixes
 
-1. **Extend the `AccessibilityScanner` class** in `content.js`
-2. **Add new check methods** following the existing pattern
-3. **Update the `scanPage()` method** to include your new checks
-4. **Add corresponding fix methods** if applicable
-5. **Update the popup interface** to display new issue types
+**Performance issues**
+- Disable auto-fixes for complex pages
+- Reduce scan depth in extension options
+- Close unnecessary browser tabs
 
-### **Example: Adding a New Check**
+### **Getting Help**
+- **Check Console**: Look for error messages in browser console
+- **Review Permissions**: Ensure extension has required permissions
+- **Test on Simple Pages**: Try scanning basic HTML pages first
+- **Report Issues**: Open an issue on GitHub with details
+
+## 🌟 Advanced Features
+
+### **Custom Accessibility Checks**
+The extension can be extended with custom accessibility rules:
 
 ```javascript
-async checkCustomIssue() {
-    const elements = document.querySelectorAll('.custom-selector');
-    
-    elements.forEach((element) => {
-        if (this.hasCustomIssue(element)) {
-            this.scanResults.push({
-                type: 'custom_issue',
-                severity: 'moderate',
-                description: 'Custom accessibility issue found',
-                element: element.outerHTML.substring(0, 100),
-                context: this.getElementContext(element),
-                suggestedFix: 'Custom fix suggestion',
-                fixable: true
-            });
-        }
-    });
+// Example custom check
+class CustomAccessibilityCheck {
+  check(pageContent) {
+    const issues = [];
+    // Your custom logic here
+    return issues;
+  }
 }
 ```
 
-## 🧪 Testing
+### **Integration with Python Toolkit**
+- **Export scan results** to use with the Python toolkit
+- **Import custom rules** from Python configuration
+- **Generate comprehensive reports** combining both tools
 
-### **Testing the Extension**
-
-1. **Load the extension** in developer mode
-2. **Navigate to test websites** with known accessibility issues
-3. **Run scans** and verify issue detection
-4. **Apply fixes** and check visual improvements
-5. **Test reversion** functionality
-6. **Verify settings** persistence and sync
-
-### **Test Websites**
-
-- **Accessibility Test Pages**: Use sites designed to test accessibility tools
-- **Real Websites**: Test on popular sites to find real-world issues
-- **Complex Applications**: Test on SPAs and dynamic content
-
-### **Debugging**
-
-- **Enable debug mode** in extension settings
-- **Check browser console** for detailed logging
-- **Use Chrome DevTools** to inspect extension components
-- **Monitor network requests** for any API calls
-
-## 📊 Performance
-
-### **Optimization Features**
-
-- **Debounced scanning** to avoid excessive page analysis
-- **Selective checking** based on user preferences
-- **Performance mode** for faster, less thorough scans
-- **Efficient DOM queries** using modern selectors
-
-### **Memory Management**
-
-- **Cleanup of applied fixes** when reverting
-- **Efficient storage** of original page state
-- **Minimal memory footprint** for long browsing sessions
-
-## 🔒 Privacy & Security
-
-### **Data Handling**
-
-- **No data collection** from web pages
-- **Local storage only** for user preferences
-- **No external API calls** for scanning
-- **Privacy-first design** with user control
-
-### **Security Features**
-
-- **Content script isolation** from web page JavaScript
-- **Limited permissions** only for necessary functionality
-- **Secure communication** between extension components
-- **No persistent tracking** of user behavior
-
-## 🌐 Browser Compatibility
-
-### **Supported Browsers**
-
-- **Chrome 88+** (Manifest V3)
-- **Edge 88+** (Chromium-based)
-- **Firefox 109+** (with limitations)
-
-### **Feature Support**
-
-| Feature | Chrome | Edge | Firefox |
-|---------|--------|------|---------|
-| Basic Scanning | ✅ | ✅ | ✅ |
-| Auto-Fixes | ✅ | ✅ | ⚠️ |
-| Settings Sync | ✅ | ✅ | ⚠️ |
-| Notifications | ✅ | ✅ | ⚠️ |
-| Context Menus | ✅ | ✅ | ❌ |
+### **API Integration**
+- **Webhook support** for automated accessibility monitoring
+- **REST API endpoints** for programmatic access
+- **WebSocket connections** for real-time updates
 
 ## 🤝 Contributing
 
 ### **How to Contribute**
-
-1. **Fork the repository**
-2. **Create a feature branch** for your changes
-3. **Implement improvements** following the existing patterns
-4. **Test thoroughly** across different browsers
-5. **Submit a pull request** with detailed description
+1. **Fork** the repository
+2. **Create** a feature branch
+3. **Make changes** and test thoroughly
+4. **Submit** a pull request with detailed description
 
 ### **Areas for Improvement**
+- **Additional accessibility checks**
+- **Enhanced auto-fix capabilities**
+- **Better UI/UX design**
+- **Performance optimizations**
+- **Cross-browser compatibility**
 
-- **Additional accessibility checks** for modern web standards
-- **Enhanced fix algorithms** for complex issues
-- **Better visual indicators** for different issue types
-- **Performance optimizations** for large pages
-- **Accessibility improvements** to the extension itself
+### **Development Guidelines**
+- **Follow accessibility best practices** in the extension itself
+- **Test on various websites** and browsers
+- **Maintain backward compatibility** when possible
+- **Document all changes** clearly
 
-### **Code Standards**
+## 📄 License
 
-- **ES6+ JavaScript** with async/await
-- **Modern CSS** with flexbox and grid
-- **Semantic HTML** for accessibility
-- **Consistent naming** conventions
-- **Comprehensive error handling**
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](../LICENSE) file for details.
+This browser extension is part of the Accessibility Toolkit project and is licensed under the MIT License. See the main [LICENSE](../LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
-- **WCAG Guidelines** for accessibility standards
-- **Chrome Extensions API** for browser integration
-- **Modern web standards** for implementation patterns
-- **Accessibility community** for feedback and testing
-
-## 📞 Support
-
-### **Getting Help**
-
-- **Check the documentation** for common issues
-- **Review the code** for implementation details
-- **Open an issue** for bugs or feature requests
-- **Join discussions** in the project community
-
-### **Reporting Issues**
-
-When reporting issues, please include:
-
-- **Browser version** and operating system
-- **Extension version** and settings
-- **Steps to reproduce** the problem
-- **Expected vs. actual behavior**
-- **Console errors** or screenshots if applicable
+- **WCAG Guidelines**: Web Content Accessibility Guidelines
+- **Browser Extension APIs**: Chrome, Firefox, and Edge extension platforms
+- **Accessibility Community**: Ongoing feedback and contributions
+- **Open Source Tools**: Libraries and frameworks that make this possible
 
 ---
 
-**Together, let's make the web more accessible for everyone!** 🌐♿
+## 🎉 Get Started Today!
+
+Transform your web browsing experience with instant accessibility insights and real-time improvements. The Accessibility Toolkit browser extension puts professional accessibility testing at your fingertips.
+
+**Install now and make the web more accessible for everyone!** 🌐♿
+
+---
+
+*For more information, see the main [README.md](../README.md) or visit our [GitHub repository](https://github.com/yourusername/pythonic-accessibility-toolkit).*
