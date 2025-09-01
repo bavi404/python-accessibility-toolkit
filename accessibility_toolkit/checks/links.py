@@ -6,6 +6,7 @@ from typing import List
 from bs4 import BeautifulSoup
 from .base import BaseCheck
 from ..models import AccessibilityIssue, IssueType, SeverityLevel
+import re
 
 
 class LinkAccessibilityCheck(BaseCheck):
@@ -17,6 +18,7 @@ class LinkAccessibilityCheck(BaseCheck):
         self.check_empty_links = config.get("check_empty_links", True)
         self.check_image_links = config.get("check_image_links", True)
         self.check_same_text_links = config.get("check_same_text_links", True)
+        self.check_context_awareness = config.get("check_context_awareness", True)
     
     def check(self, soup: BeautifulSoup, url: str) -> List[AccessibilityIssue]:
         """
@@ -93,47 +95,167 @@ class LinkAccessibilityCheck(BaseCheck):
         return False
     
     def _is_non_descriptive_link(self, link) -> bool:
-        """Check if link text is non-descriptive."""
+        """Check if link text is non-descriptive with enhanced heuristics."""
         text_content = link.get_text(strip=True)
         
-        # Common non-descriptive link text patterns (expanded)
-        non_descriptive_patterns = [
-            "click here", "here", "more", "more info", "more information",
-            "read more", "learn more", "continue", "next", "previous",
-            "back", "forward", "submit", "go", "link", "this", "that",
-            "click", "tap", "press", "select", "choose", "browse",
-            "view", "see", "show", "display", "open", "download",
-            "get", "find", "search", "look", "check", "verify",
-            # additions
-            "details", "info", "information", "more details", "start", "try",
-            "home", "about", "services", "products"  # generic nav labels without context
-        ]
+        # Enhanced non-descriptive link text patterns
+        vague_patterns = {
+            # Generic action words
+            "actions": [
+                "click here", "click", "tap here", "tap", "press here", "press",
+                "select here", "select", "choose", "browse", "view", "see", "show",
+                "display", "open", "download", "get", "find", "search", "look",
+                "check", "verify", "try", "start", "begin", "go", "submit"
+            ],
+            
+            # Generic navigation
+            "navigation": [
+                "here", "there", "this", "that", "more", "more info", "more information",
+                "more details", "details", "info", "information", "continue", "next",
+                "previous", "back", "forward", "home", "about", "services", "products",
+                "contact", "help", "support", "faq", "blog", "news", "events"
+            ],
+            
+            # Generic content indicators
+            "content": [
+                "read more", "learn more", "see more", "view more", "show more",
+                "expand", "full article", "full story", "complete", "entire",
+                "all", "everything", "full list", "complete list"
+            ],
+            
+            # Generic link indicators
+            "link_indicators": [
+                "link", "url", "page", "website", "site", "webpage", "web page",
+                "web site", "webpage", "webpage", "web page", "web site"
+            ],
+            
+            # Generic form actions
+            "form_actions": [
+                "submit", "send", "post", "upload", "save", "delete", "remove",
+                "edit", "modify", "change", "update", "confirm", "cancel"
+            ],
+            
+            # Generic social media
+            "social": [
+                "follow us", "follow", "like us", "like", "share", "tweet",
+                "retweet", "comment", "reply", "message", "dm", "direct message"
+            ]
+        }
+        
+        # Flatten all patterns
+        all_patterns = []
+        for category in vague_patterns.values():
+            all_patterns.extend(category)
         
         text_lower = text_content.lower().strip()
         
-        # Check for exact matches (after stripping punctuation)
-        import re
+        # Check for exact matches (after stripping punctuation and extra spaces)
         text_sanitized = re.sub(r"[\s\-–—:;,.!?()\[\]{}]+", " ", text_lower).strip()
-        if text_sanitized in non_descriptive_patterns:
+        
+        # Check for exact matches
+        if text_sanitized in all_patterns:
             return True
         
-        # Check for patterns within text
-        for pattern in non_descriptive_patterns:
+        # Check for patterns within text with context analysis
+        for pattern in all_patterns:
             if pattern in text_sanitized:
                 # Allow if it's part of a longer, more descriptive phrase
-                if len(text_sanitized) > len(pattern) + 8:
-                    continue
+                if len(text_sanitized) > len(pattern) + 12:
+                    # Check if the additional text provides meaningful context
+                    if self._has_meaningful_context(text_sanitized, pattern):
+                        continue
                 return True
         
         # Check for very short text
         if len(text_sanitized) < 3:
             return True
         
-        # Check for generic text
-        if text_sanitized in ["link", "url", "page"]:
+        # Check for generic text with numbers only
+        if re.match(r"^[\d\s\-–—:;,.!?()\[\]{}]+$", text_sanitized):
+            return True
+        
+        # Check for generic text with common non-descriptive patterns
+        if self._is_generic_without_context(text_sanitized):
+            return True
+        
+        # Check for context-aware analysis
+        if self.check_context_awareness and self._lacks_contextual_information(link):
             return True
         
         return False
+    
+    def _has_meaningful_context(self, text: str, pattern: str) -> bool:
+        """Check if text has meaningful context beyond the vague pattern."""
+        # Remove the vague pattern and check remaining text
+        remaining = text.replace(pattern, "").strip()
+        
+        # Check if remaining text provides meaningful context
+        meaningful_words = [
+            "privacy", "policy", "terms", "conditions", "report", "document",
+            "guide", "manual", "tutorial", "help", "support", "contact",
+            "about", "company", "organization", "team", "product", "service",
+            "download", "upload", "form", "application", "registration",
+            "login", "signup", "account", "profile", "settings", "preferences"
+        ]
+        
+        for word in meaningful_words:
+            if word in remaining.lower():
+                return True
+        
+        # Check if remaining text is substantial
+        if len(remaining) > 8:
+            return True
+        
+        return False
+    
+    def _is_generic_without_context(self, text: str) -> bool:
+        """Check if text is generic without providing context."""
+        # Common generic patterns that lack context
+        generic_patterns = [
+            r"^[a-z\s]+$",  # Only lowercase letters and spaces
+            r"^[A-Z\s]+$",  # Only uppercase letters and spaces
+            r"^[a-zA-Z\s]+$",  # Mixed case but only letters and spaces
+        ]
+        
+        for pattern in generic_patterns:
+            if re.match(pattern, text) and len(text) < 15:
+                # Check if it's a common generic word
+                generic_words = ["link", "page", "site", "web", "click", "here", "more"]
+                if any(word in text.lower() for word in generic_words):
+                    return True
+        
+        return False
+    
+    def _lacks_contextual_information(self, link) -> bool:
+        """Check if link lacks contextual information from surrounding content."""
+        # Get surrounding context
+        parent = link.parent
+        if not parent:
+            return False
+        
+        # Check if parent has descriptive text
+        parent_text = parent.get_text(strip=True)
+        link_text = link.get_text(strip=True)
+        
+        # Remove link text from parent text
+        context_text = parent_text.replace(link_text, "").strip()
+        
+        # Check if context provides meaningful information
+        if len(context_text) < 20:
+            return True
+        
+        # Check for common context patterns
+        context_patterns = [
+            "click here to", "click here for", "click here and", "click here in",
+            "read more about", "learn more about", "see more of", "view more of",
+            "more information on", "more details about", "continue reading about"
+        ]
+        
+        for pattern in context_patterns:
+            if pattern in context_text.lower():
+                return False
+        
+        return True
     
     def _has_image_without_alt(self, link) -> bool:
         """Check if link contains images without proper alt text."""
@@ -221,6 +343,9 @@ class LinkAccessibilityCheck(BaseCheck):
         context = self.get_parent_context(link)
         link_text = link.get_text(strip=True)
         
+        # Enhanced suggested fix based on the type of vague text
+        suggested_fix = self._get_enhanced_suggested_fix(link_text, link)
+        
         return self.create_issue(
             issue_type=IssueType.NON_DESCRIPTIVE_LINKS,
             severity=SeverityLevel.MODERATE,
@@ -229,14 +354,44 @@ class LinkAccessibilityCheck(BaseCheck):
             context=context,
             line_number=self.get_line_number(link),
             column_number=self.get_column_number(link),
-            suggested_fix=(
-                f"Replace the generic text '{link_text}' with more descriptive text that "
-                "explains where the link goes or what it does. For example, instead of "
-                "'Click here', use 'Read our privacy policy' or 'Download the report'."
-            ),
+            suggested_fix=suggested_fix,
             wcag_criteria=["2.4.4", "2.4.9"],
             additional_info=element_info
         )
+    
+    def _get_enhanced_suggested_fix(self, link_text: str, link) -> str:
+        """Get enhanced suggested fix based on link text and context."""
+        link_text_lower = link_text.lower()
+        href = link.get("href", "").lower()
+        
+        # Categorize the vague text and provide specific suggestions
+        if any(word in link_text_lower for word in ["click here", "click", "tap", "press"]):
+            if "privacy" in href or "policy" in href:
+                return f"Replace '{link_text}' with 'Read our Privacy Policy' or 'View Privacy Policy'"
+            elif "terms" in href or "conditions" in href:
+                return f"Replace '{link_text}' with 'Read our Terms of Service' or 'View Terms and Conditions'"
+            elif "contact" in href:
+                return f"Replace '{link_text}' with 'Contact Us' or 'Get in Touch'"
+            else:
+                return f"Replace '{link_text}' with descriptive text that explains where the link goes. For example: 'Read the full article', 'Download the report', or 'View product details'"
+        
+        elif any(word in link_text_lower for word in ["read more", "learn more", "see more"]):
+            return f"Replace '{link_text}' with specific information about what users will learn. For example: 'Read more about accessibility guidelines', 'Learn more about our services', or 'See more product options'"
+        
+        elif any(word in link_text_lower for word in ["more", "more info", "more information"]):
+            return f"Replace '{link_text}' with specific details about what additional information is available. For example: 'More product details', 'More about our company', or 'More accessibility resources'"
+        
+        elif any(word in link_text_lower for word in ["here", "this", "that"]):
+            return f"Replace '{link_text}' with descriptive text that explains what 'here', 'this', or 'that' refers to. For example: 'View our accessibility statement', 'Read the full report', or 'Download the guide'"
+        
+        elif any(word in link_text_lower for word in ["link", "url", "page"]):
+            return f"Replace '{link_text}' with descriptive text that explains what the link contains. For example: 'Visit our homepage', 'Go to the contact page', or 'Access the help section'"
+        
+        elif len(link_text) < 5:
+            return f"Replace the short text '{link_text}' with a longer, more descriptive phrase that explains the link's purpose and destination"
+        
+        else:
+            return f"Replace the generic text '{link_text}' with more descriptive text that explains where the link goes or what it does. For example, instead of '{link_text}', use specific, action-oriented text like 'Read our privacy policy' or 'Download the accessibility report'."
     
     def _create_image_link_issue(self, link) -> AccessibilityIssue:
         """Create an issue for image links without proper alt text."""

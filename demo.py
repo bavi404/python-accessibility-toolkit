@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+  #!/usr/bin/env python3
 """
 Demo script for the Pythonic Accessibility Toolkit.
 This script demonstrates the toolkit's capabilities with example websites.
