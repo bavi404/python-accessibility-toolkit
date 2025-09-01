@@ -297,25 +297,68 @@ class ReportGenerator:
             </div>
         </div>
 
-        <div class=\"section\">
+        <!-- Accessibility Categories Guidance Section -->
+        <div style="margin-top: 24px;">
+            <h2 style="margin:0 0 12px 0; font-size:18px; font-weight:600; border-left:4px solid #5a67d8; padding-left:10px;">🎯 Accessibility Categories & Guidance</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 16px;">
+                <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">👁️</div>
+                    <h3 style="margin: 0 0 8px 0; color: #2d3748; font-size: 16px; font-weight: 600;">Visual Accessibility</h3>
+                    <p style="margin: 0 0 8px 0; color: #4a5568; font-size: 14px; line-height: 1.4;">Ensures content is accessible to users with visual impairments, including proper alt text, color contrast, and focus indicators.</p>
+                    <div style="background: #edf2f7; padding: 6px 8px; border-radius: 4px; font-size: 12px; color: #2d3748;">WCAG: 1.1.1, 1.4.3, 2.4.7</div>
+                </div>
+                <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🔊</div>
+                    <h3 style="margin: 0 0 8px 0; color: #2d3748; font-size: 16px; font-weight: 600;">Auditory Accessibility</h3>
+                    <p style="margin: 0 0 8px 0; color: #4a5568; font-size: 14px; line-height: 1.4;">Provides alternatives for audio content through captions, transcripts, and proper media controls for users with hearing impairments.</p>
+                    <div style="background: #edf2f7; padding: 6px 8px; border-radius: 4px; font-size: 12px; color: #2d3748;">WCAG: 1.2.1, 1.2.2, 1.2.3</div>
+                </div>
+                <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🧠</div>
+                    <h3 style="margin: 0 0 8px 0; color: #2d3748; font-size: 16px; font-weight: 600;">Cognitive & Neurological</h3>
+                    <p style="margin: 0 0 8px 0; color: #4a5568; font-size: 14px; line-height: 1.4;">Supports users with cognitive disabilities through clear navigation, consistent design, and reduced motion options.</p>
+                    <div style="background: #edf2f7; padding: 6px 8px; border-radius: 4px; font-size: 12px; color: #2d3748;">WCAG: 2.2.2, 2.4.6, 2.4.8</div>
+                </div>
+                <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">⌨️</div>
+                    <h3 style="margin: 0 0 8px 0; color: #2d3748; font-size: 16px; font-weight: 600;">Keyboard Navigation</h3>
+                    <p style="margin: 0 0 8px 0; color: #4a5568; font-size: 14px; line-height: 1.4;">Ensures all functionality is accessible via keyboard, with proper focus management and no keyboard traps.</p>
+                    <div style="background: #edf2f7; padding: 6px 8px; border-radius: 4px; font-size: 12px; color: #2d3748;">WCAG: 2.1.1, 2.4.1, 2.4.3</div>
+                </div>
+                <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">📝</div>
+                    <h3 style="margin: 0 0 8px 0; color: #2d3748; font-size: 16px; font-weight: 600;">Form Accessibility</h3>
+                    <p style="margin: 0 0 8px 0; color: #4a5568; font-size: 14px; line-height: 1.4;">Provides proper labels, error handling, and validation feedback for users with various disabilities.</p>
+                    <div style="background: #edf2f7; padding: 6px 8px; border-radius: 4px; font-size: 12px; color: #2d3748;">WCAG: 3.3.1, 3.3.2, 3.3.3</div>
+                </div>
+                <div style="background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">🔗</div>
+                    <h3 style="margin: 0 0 8px 0; color: #2d3748; font-size: 16px; font-weight: 600;">Link & Content</h3>
+                    <p style="margin: 0 0 8px 0; color: #4a5568; font-size: 14px; line-height: 1.4;">Ensures descriptive link text, proper heading structure, and meaningful content organization.</p>
+                    <div style="background: #edf2f7; padding: 6px 8px; border-radius: 4px; font-size: 12px; color: #2d3748;">WCAG: 2.4.4, 2.4.6, 1.3.1</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
             <h2>Results by URL</h2>
             {% for result in scan_results %}
-            <div class=\"site card\">
-                <div class=\"site-head\">
-                    <div class=\"url\">{{ result.url }}</div>
-                    <div class=\"badge\">Score: {{ result.accessibility_score }}/100</div>
+            <div class="site card">
+                <div class="site-head">
+                    <div class="url">{{ result.url }}</div>
+                    <div class="badge">Score: {{ result.accessibility_score }}/100</div>
                 </div>
 
                 {% if result.status != 'completed' %}
-                    <div style=\"padding:14px\">Scan failed: {{ result.error_message }}</div>
+                    <div style="padding:14px">Scan failed: {{ result.error_message }}</div>
                 {% elif result.issues|length == 0 %}
-                    <div style=\"padding:20px; text-align:center; background:#f0f9ff; border:1px solid #0ea5e9; border-radius:8px; margin:12px;\">
-                        <div style=\"font-size:48px; margin-bottom:12px;\">🎉</div>
-                        <h3 style=\"color:#0c4a6e; margin:0 0 8px 0;\">Great News!</h3>
-                        <p style=\"color:#0369a1; margin:0; font-size:14px;\">
+                    <div style="padding:20px; text-align:center; background:#f0f9ff; border:1px solid #0ea5e9; border-radius:8px; margin:12px;">
+                        <div style="font-size:48px; margin-bottom:12px;">🎉</div>
+                        <h3 style="color:#0c4a6e; margin:0 0 8px 0;">Great News!</h3>
+                        <p style="color:#0369a1; margin:0; font-size:14px;">
                             {% if result.message %}{{ result.message }}{% else %}No accessibility issues found on this page!{% endif %}
                         </p>
-                        <p style=\"color:#0c4a6e; margin:8px 0 0 0; font-size:12px;\">Your page meets accessibility standards.</p>
+                        <p style="color:#0c4a6e; margin:8px 0 0 0; font-size:12px;">Your page meets accessibility standards.</p>
                     </div>
                 {% else %}
                 <details data-section="crit">
@@ -329,30 +372,30 @@ class ReportGenerator:
                         <button class="btn act-copy-csv">Copy CSV</button>
                         <button class="btn act-download-json">Download JSON</button>
                     </div>
-                    <div style=\"padding: 0 12px 12px 12px\">
+                    <div style="padding: 0 12px 12px 12px">
                         {% set crit = result.issues|selectattr('severity.value','equalto','critical')|list %}
                         {% if crit %}
                         <table>
                             <thead>
                                 <tr>
-                                    <th style=\"width:120px\">Type</th>
+                                    <th style="width:120px">Type</th>
                                     <th>Description</th>
-                                    <th style=\"width:22%\">Element</th>
-                                    <th style=\"width:16%\">WCAG</th>
-                                    <th style=\"width:26%\">Suggested Fix</th>
+                                    <th style="width:22%">Element</th>
+                                    <th style="width:16%">WCAG</th>
+                                    <th style="width:26%">Suggested Fix</th>
                                 </tr>
                             </thead>
                             <tbody>
                             {% for issue in crit %}
                                 <tr data-sev="critical" data-type="{{ issue.issue_type.value }}" data-wcag="{{ issue.wcag_criteria|join(' ') }}">
-                                    <td><span class=\"sev critical\">Critical</span> {{ issue.issue_type.value.replace('_',' ').title() }}</td>
+                                    <td><span class="sev critical">Critical</span> {{ issue.issue_type.value.replace('_',' ').title() }}</td>
                                     <td>{{ issue.description }}</td>
-                                    <td><div class=\"muted\">{{ issue.element }}</div></td>
+                                    <td><div class="muted">{{ issue.element }}</div></td>
                                     <td>{{ issue.wcag_criteria|join(', ') }}</td>
                                     <td>
-                                        <div class=\"fix\">{{ issue.suggested_fix }}</div>
+                                        <div class="fix">{{ issue.suggested_fix }}</div>
                                         {% if issue.additional_info and issue.additional_info.screenshot %}
-                                            <div style=\"margin-top:6px\"><img src=\"{{ issue.additional_info.screenshot }}\" alt=\"screenshot\" style=\"max-width:200px;border:1px solid #e2e8f0;border-radius:6px\"></div>
+                                            <div style="margin-top:6px"><img src="{{ issue.additional_info.screenshot }}" alt="screenshot" style="max-width:200px;border:1px solid #e2e8f0;border-radius:6px"></div>
                                         {% endif %}
                                     </td>
                                 </tr>
@@ -360,7 +403,7 @@ class ReportGenerator:
                             </tbody>
                         </table>
                         {% else %}
-                        <div class=\"muted\" style=\"padding:10px\">No critical issues.</div>
+                        <div class="muted" style="padding:10px">No critical issues.</div>
                         {% endif %}
                     </div>
                 </details>
@@ -376,30 +419,30 @@ class ReportGenerator:
                         <button class="btn act-copy-csv">Copy CSV</button>
                         <button class="btn act-download-json">Download JSON</button>
                     </div>
-                    <div style=\"padding: 0 12px 12px 12px\">
+                    <div style="padding: 0 12px 12px 12px">
                         {% set mod = result.issues|selectattr('severity.value','equalto','moderate')|list %}
                         {% if mod %}
                         <table>
                             <thead>
                                 <tr>
-                                    <th style=\"width:120px\">Type</th>
+                                    <th style="width:120px">Type</th>
                                     <th>Description</th>
-                                    <th style=\"width:22%\">Element</th>
-                                    <th style=\"width:16%\">WCAG</th>
-                                    <th style=\"width:26%\">Suggested Fix</th>
+                                    <th style="width:22%">Element</th>
+                                    <th style="width:16%">WCAG</th>
+                                    <th style="width:26%">Suggested Fix</th>
                                 </tr>
                             </thead>
                             <tbody>
                             {% for issue in mod %}
                                 <tr data-sev="moderate" data-type="{{ issue.issue_type.value }}" data-wcag="{{ issue.wcag_criteria|join(' ') }}">
-                                    <td><span class=\"sev moderate\">Moderate</span> {{ issue.issue_type.value.replace('_',' ').title() }}</td>
+                                    <td><span class="sev moderate">Moderate</span> {{ issue.issue_type.value.replace('_',' ').title() }}</td>
                                     <td>{{ issue.description }}</td>
-                                    <td><div class=\"muted\">{{ issue.element }}</div></td>
+                                    <td><div class="muted">{{ issue.element }}</div></td>
                                     <td>{{ issue.wcag_criteria|join(', ') }}</td>
                                     <td>
-                                        <div class=\"fix\">{{ issue.suggested_fix }}</div>
+                                        <div class="fix">{{ issue.suggested_fix }}</div>
                                         {% if issue.additional_info and issue.additional_info.screenshot %}
-                                            <div style=\"margin-top:6px\"><img src=\"{{ issue.additional_info.screenshot }}\" alt=\"screenshot\" style=\"max-width:200px;border:1px solid #e2e8f0;border-radius:6px\"></div>
+                                            <div style="margin-top:6px"><img src="{{ issue.additional_info.screenshot }}" alt="screenshot" style="max-width:200px;border:1px solid #e2e8f0;border-radius:6px"></div>
                                         {% endif %}
                                     </td>
                                 </tr>
@@ -407,7 +450,7 @@ class ReportGenerator:
                             </tbody>
                         </table>
                         {% else %}
-                        <div class=\"muted\" style=\"padding:10px\">No moderate issues.</div>
+                        <div class="muted" style="padding:10px">No moderate issues.</div>
                         {% endif %}
                     </div>
                 </details>
@@ -423,30 +466,30 @@ class ReportGenerator:
                         <button class="btn act-copy-csv">Copy CSV</button>
                         <button class="btn act-download-json">Download JSON</button>
                     </div>
-                    <div style=\"padding: 0 12px 12px 12px\">
+                    <div style="padding: 0 12px 12px 12px">
                         {% set low = result.issues|selectattr('severity.value','equalto','low')|list %}
                         {% if low %}
                         <table>
                             <thead>
                                 <tr>
-                                    <th style=\"width:120px\">Type</th>
+                                    <th style="width:120px">Type</th>
                                     <th>Description</th>
-                                    <th style=\"width:22%\">Element</th>
-                                    <th style=\"width:16%\">WCAG</th>
-                                    <th style=\"width:26%\">Suggested Fix</th>
+                                    <th style="width:22%">Element</th>
+                                    <th style="width:16%">WCAG</th>
+                                    <th style="width:26%">Suggested Fix</th>
                                 </tr>
                             </thead>
                             <tbody>
                             {% for issue in low %}
                                 <tr data-sev="low" data-type="{{ issue.issue_type.value }}" data-wcag="{{ issue.wcag_criteria|join(' ') }}">
-                                    <td><span class=\"sev low\">Low</span> {{ issue.issue_type.value.replace('_',' ').title() }}</td>
+                                    <td><span class="sev low">Low</span> {{ issue.issue_type.value.replace('_',' ').title() }}</td>
                                     <td>{{ issue.description }}</td>
-                                    <td><div class=\"muted\">{{ issue.element }}</div></td>
+                                    <td><div class="muted">{{ issue.element }}</div></td>
                                     <td>{{ issue.wcag_criteria|join(', ') }}</td>
                                     <td>
-                                        <div class=\"fix\">{{ issue.suggested_fix }}</div>
+                                        <div class="fix">{{ issue.suggested_fix }}</div>
                                         {% if issue.additional_info and issue.additional_info.screenshot %}
-                                            <div style=\"margin-top:6px\"><img src=\"{{ issue.additional_info.screenshot }}\" alt=\"screenshot\" style=\"max-width:200px;border:1px solid #e2e8f0;border-radius:6px\"></div>
+                                            <div style="margin-top:6px"><img src="{{ issue.additional_info.screenshot }}" alt="screenshot" style="max-width:200px;border:1px solid #e2e8f0;border-radius:6px"></div>
                                         {% endif %}
                                     </td>
                                 </tr>
@@ -454,7 +497,7 @@ class ReportGenerator:
                             </tbody>
                         </table>
                         {% else %}
-                        <div class=\"muted\" style=\"padding:10px\">No low priority issues.</div>
+                        <div class="muted" style="padding:10px">No low priority issues.</div>
                         {% endif %}
                     </div>
                 </details>
@@ -463,7 +506,7 @@ class ReportGenerator:
             {% endfor %}
         </div>
 
-        <div class=\"footer\">Generated by Pythonic Accessibility Toolkit • {{ generated_at }}</div>
+        <div class="footer">Generated by Pythonic Accessibility Toolkit • {{ generated_at }}</div>
     </div>
     <script>
       (function(){
